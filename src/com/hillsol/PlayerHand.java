@@ -1,0 +1,169 @@
+package com.hillsol;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.hillsol.Suit.*;
+
+public class PlayerHand {
+    private List<Card> clubs = new ArrayList<>();
+    private List<Card> diamonds = new ArrayList<>();
+    private List<Card> hearts = new ArrayList<>();
+    private List<Card> spades = new ArrayList<>();
+
+    public void receiveCard(Card dealtCard) {
+        switch (dealtCard.getSuit()) {
+            // todo: candidate for a pattern here, or maybe just better structure:
+            // todo also: Why did I make these ArrayLists instead of a Set or something?
+            case CLUBS: {
+                if (clubs.contains(dealtCard)) {
+                    throw new RuntimeException("Attempted to deal the " + dealtCard + ", which has already been dealt.");
+                }
+                clubs.add(dealtCard);
+                break;
+            }
+            case DIAMONDS: {
+                if (diamonds.contains(dealtCard)) {
+                    throw new RuntimeException("Attempted to deal the " + dealtCard + ", which has already been dealt.");
+                }
+                diamonds.add(dealtCard);
+                break;
+            }
+            case HEARTS: {
+                if (hearts.contains(dealtCard)) {
+                    throw new RuntimeException("Attempted to deal " + dealtCard + ", which has already been dealt.");
+                }
+                hearts.add(dealtCard);
+                break;
+            }
+            case SPADES: {
+                if (spades.contains(dealtCard)) {
+                    throw new RuntimeException("Attempted to deal " + dealtCard + ", which has already been dealt.");
+                }
+                spades.add(dealtCard);
+                break;
+            }
+            default: {
+                throw new RuntimeException("Unknown suit for card: " + dealtCard);
+            }
+        }
+    }
+
+    public Card getTwoOfClubs() {
+        for (Card card : clubs) {
+            if (card.getRank() == Rank.TWO)
+                return card;
+        }
+        return null;
+    }
+
+    public void playCard(Card card) {
+
+    }
+
+    // Will only be called after the leading card is played; will know which suit to try to play.
+    public Card chooseCard(Suit suitLed, boolean areHeartsBroken) {
+        switch (suitLed) {
+            case CLUBS: {
+                if (clubs.size() > 0)
+                    return (clubs.get((int) Math.random() * clubs.size()));
+                break;
+            }
+            case DIAMONDS: {
+                if (diamonds.size() > 0)
+                    return (diamonds.get((int) Math.random() * diamonds.size()));
+                break;
+            }
+            case HEARTS: {
+                if (hearts.size() > 0)
+                    return (hearts.get((int) Math.random() * hearts.size()));
+                break;
+            }
+            case SPADES: {
+                if (spades.size() > 0)
+                    return (spades.get((int) Math.random() * spades.size()));
+                break;
+            }
+        }
+
+        return getRandomCard(areHeartsBroken);
+    }
+// todo:  need to fix heartsBroken: can break hearts when you don't have suitLed, not ALL the other suits
+    public Card getRandomCard(boolean areHeartsBroken) {
+        Card randomCard = null;
+        while (randomCard == null) {
+            switch (Suit.getRandomSuit()) {
+                case CLUBS: {
+                    if (clubs.size() > 0)
+                        return (clubs.get((int) Math.random() * clubs.size()));
+                    break;
+                }
+                case DIAMONDS: {
+                    if (diamonds.size() > 0)
+                        return (diamonds.get((int) Math.random() * diamonds.size()));
+                    break;
+                }
+                case HEARTS: {
+                    if (!areHeartsBroken){
+                        if (clubs.size()!=0 || diamonds.size()!=0 || spades.size()!=0){
+                            break;
+                        } else {
+                            areHeartsBroken = true;
+                        }
+                    }
+                    if (hearts.size() > 0)
+                        return (hearts.get((int) Math.random() * hearts.size()));
+                    break;
+                }
+                case SPADES: {
+                    if (spades.size() > 0)
+                        return (spades.get((int) Math.random() * spades.size()));
+                    break;
+                }
+            }
+        }
+        return null;
+    }
+
+    public void removeCard(Card card) {
+        switch (card.getSuit()) {
+            case CLUBS: {
+                if (!clubs.remove(card)) throw new RuntimeException(card + " not found in player hand.");
+                break;
+            }
+            case DIAMONDS: {
+                if (!diamonds.remove(card)) throw new RuntimeException(card + " not found in player hand.");
+                break;
+            }
+            case HEARTS: {
+                if (!hearts.remove(card)) throw new RuntimeException(card + " not found in player hand.");
+                break;
+            }
+            case SPADES: {
+                if (!spades.remove(card)) throw new RuntimeException(card + " not found in player hand.");
+                break;
+            }
+            default: {
+                throw new RuntimeException("Unknown suit for card: " + card);
+            }
+        }
+    }
+
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        for (Card card : clubs) {
+            result.append("\n" + card);
+        }
+        for (Card card : diamonds) {
+            result.append("\n" + card);
+        }
+        for (Card card : hearts) {
+            result.append("\n" + card);
+        }
+        for (Card card : spades) {
+            result.append("\n" + card);
+        }
+
+        return result.toString();
+    }
+}

@@ -1,0 +1,63 @@
+package com.hillsol;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class Player {
+    private final String name;
+    private PlayerHand playerHand;
+    private Set<Card> takenCards;
+    private int currentHandScore;
+    private int currentGameScore;
+
+    public Player(String name) {
+        this.name = name;
+        this.playerHand = new PlayerHand();
+        takenCards = new HashSet<>();
+        currentGameScore = 0;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public PlayerHand getPlayerHand() {
+        return playerHand;
+    }
+
+    public Set<Card> getTakenCards() {
+        return takenCards;
+    }
+
+    public void addTakenCard(Card takenCard) {
+        this.takenCards.add(takenCard);
+    }
+
+    public void clearTakenCards(){
+        takenCards.clear();
+    }
+
+    public int getCurrentGameScore() {
+        return currentGameScore;
+    }
+
+    public void addGameScore(int score){
+        currentGameScore += score;
+    }
+
+    public int getCurrentHandScore() {
+        return currentHandScore;
+    }
+
+    public void addHandScore(int score){
+        currentHandScore += score;
+    }
+
+    public void resetHandScore(){
+        currentHandScore = 0;
+    }
+
+    public String toString(){
+        return (name + "; score: " + currentGameScore + "; cards:" + playerHand);
+    }
+}
