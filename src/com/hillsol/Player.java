@@ -3,12 +3,15 @@ package com.hillsol;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Player {
+public abstract class Player {
     private final String name;
     private PlayerHand playerHand;
     private Set<Card> takenCards;
     private int currentHandScore;
     private int currentGameScore;
+    PassThreeStrategy passThreeStrategy;
+    PlayHandStrategy playHandStrategy;
+    private Set<Card> threePassingCards;
 
     public Player(String name) {
         this.name = name;
@@ -47,6 +50,33 @@ public class Player {
 
     public int getCurrentHandScore() {
         return currentHandScore;
+    }
+
+    public Set<Card> getThreePassingCards() {
+        return threePassingCards;
+    }
+
+    public void setThreePassingCards(Set<Card> threePassingCards) {
+        this.threePassingCards = threePassingCards;
+    }
+
+
+
+
+//    public void setPassThreeStrategy(PassThreeStrategy passThreeStrategy) {
+//        this.passThreeStrategy = passThreeStrategy;
+//    }
+
+    public Set<Card> executePassThreeCards() {
+        return passThreeStrategy.passThreeCards(getPlayerHand());
+    }
+
+//    public void setPlayHandStrategy(PlayHandStrategy playHandStrategy) {
+//        this.playHandStrategy = playHandStrategy;
+//    }
+
+    public Card executePlayCard() {
+        return playHandStrategy.playCard();
     }
 
     public void addHandScore(int score){

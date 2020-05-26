@@ -18,39 +18,43 @@ public class Game {
      */
     List<Player> playerList = new LinkedList();
 
-    public Game(final String ... names){
-        if (names.length != 4) throw new RuntimeException("Game must have exactly 4 players.");
+    public Game(final Player... players) {
+        if (players.length != 4) throw new RuntimeException("Game must have exactly 4 players.");
         // The order of players in varargs is the order in which they play the game.
-        for (String name: names) playerList.add(new Player(name));
-        Deck52 deck = new Deck52();
-        System.out.println("Playing a Game ====================");
-        while (didSomeoneLose()==false){
-            // todo: remove when things are working
-//            playerList.get(0).addScore(20);
-            // todo: pass cards (left, right, you know the drill)
-            Hand hand = new Hand(playerList);
-            hand.playHand(deck);
-
+        for (Player player : players) {
+            playerList.add(player);
         }
-        System.out.println("\n === Game over ===");
     }
 
-    public Player playGame(){
-        printPlayers();
-        return new Player("Winner");
+    public void playGame() {
+        Deck52 deck = new Deck52();
+        System.out.println("Playing a Game ====================");
+        PassDirection[] passDirections = {  // should be in PassDirection enum
+                PassDirection.LEFT,
+                PassDirection.RIGHT,
+                PassDirection.ACROSS,
+                PassDirection.NONE};
+        int passCardsOffset = 0;
+        while (didSomeoneLose() == false) {
+            Hand hand = new Hand(playerList);
+            hand.playHand(deck, passCardsOffset);
+            passCardsOffset++;
+            if (passCardsOffset > 3) passCardsOffset = 0;
+        }
+        System.out.println("=== Game Over ===");
     }
 
     public void printPlayers() {
         System.out.println("Players:");
-        for (Player player: playerList){
+        for (Player player : playerList) {
             System.out.println(player);
         }
     }
 
-    private boolean didSomeoneLose(){
+    private boolean didSomeoneLose() {
         boolean result = false;
-        for(Player player: playerList){
-            if (player.getCurrentGameScore()>=100) result = true;
+        for (Player player : playerList) {
+            if (player.getCurrentGameScore() >= 100) result = true;
         }
         return result;
     }

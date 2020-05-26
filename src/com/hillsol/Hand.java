@@ -7,15 +7,20 @@ import java.util.Set;
 
 public class Hand {
 
+
+
     List<Player> playerList = new LinkedList();
-    private boolean areHeartsAreBroken;
+    private boolean areHeartsBroken;
+
+
+
 
     public Hand(List playerList) {
         this.playerList = playerList;
     }
 
-    public void playHand(Deck52 deck) {
-        System.out.println("  Playing a Hand ====================");
+    public void playHand(Deck52 deck, int passCardsOffset) {
+        System.out.println("  Playing a Hand ==================== " + passCardsOffset);
         for (Player player : playerList) {
             player.resetHandScore();
         }
@@ -23,7 +28,8 @@ public class Hand {
         deck.shuffle();
         deck.shuffle();
         deal(deck); // todo: rotate dealer.
-        areHeartsAreBroken = false;
+        if (passCardsOffset < 4) passCards(passCardsOffset); // todo:  clarify condition for a human to read
+        areHeartsBroken = false;
         Player leadingPlayer = playTrick(getPlayerWithTwoOfClubs());
         for (int i = 1; i < 13; i++) {
             leadingPlayer = playTrick(leadingPlayer);
@@ -35,8 +41,28 @@ public class Hand {
                 for (Player otherPlayer: playerList){
                     if (player!=otherPlayer) otherPlayer.addGameScore(26);
                 }
+                return;  //  todo: exit loop more noticeably so future dev doesn't miss it
             } else {
                 player.addGameScore(player.getCurrentHandScore());
+            }
+        }
+    }
+
+    private void passCards(int passCardsOffset) {  // todo: make passCardsOffset a human-understandable thing (Direction?)
+         // get the cards being passed by all players before moving them to the receiving playerHand
+        for (int currentPlayerIndex = 0; currentPlayerIndex < 4; currentPlayerIndex++) {
+            Player player = playerList.get(currentPlayerIndex);
+            player.setThreePassingCards(player.executePassThreeCards());
+        }
+
+        for (int currentPlayerIndex = 0; currentPlayerIndex < 4; currentPlayerIndex++) {
+            Player player = playerList.get(currentPlayerIndex);
+            for (Card card: player.getThreePassingCards()){
+                // todo: would it be better/easier to use a Linkedlist instead of ArrayList?
+                // todo: no, I think making the playerHand Set(s) instead of Lists might ease this code.  Or not.
+                int playerIndex = currentPlayerIndex + passCardsOffset;
+                if (playerIndex > 3) playerIndex = playerIndex - 4;
+                playerList.get(playerIndex).getPlayerHand().receiveCard(card);
             }
         }
     }
@@ -72,7 +98,7 @@ public class Hand {
 
         Player player = playerList.get(playerPosition);
         Card cardPlayed = player.getPlayerHand().getTwoOfClubs();
-        if (cardPlayed == null) cardPlayed = player.getPlayerHand().getRandomCard(areHeartsAreBroken);
+        if (cardPlayed == null) cardPlayed = player.getPlayerHand().getRandomCard(areHeartsBroken);
 
         Rank highestRank = null;
         Player trickTaker = null;
@@ -80,7 +106,7 @@ public class Hand {
         for (int i = 0; i < 4; i++) {
             if (cardPlayed == null) {
 //                cardPlayed = player.getPlayerHand().getRandomCard();
-                cardPlayed = player.getPlayerHand().chooseCard(suitLed, areHeartsAreBroken);
+                cardPlayed = player.getPlayerHand().chooseCard(suitLed, areHeartsBroken);
             }
 //            System.out.println("          " + player.getName() + ": " + cardPlayed);
             if (suitLed == null) {

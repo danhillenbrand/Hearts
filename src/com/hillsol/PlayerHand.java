@@ -89,7 +89,9 @@ public class PlayerHand {
         return getRandomCard(areHeartsBroken);
     }
 // todo:  need to fix heartsBroken: can break hearts when you don't have suitLed, not ALL the other suits
-    public Card getRandomCard(boolean areHeartsBroken) {
+// todo: when choosing cards to play is refactored out from this class, can remove canChooseHearts parameter
+
+    public Card getRandomCard(boolean canChooseHearts) {
         Card randomCard = null;
         while (randomCard == null) {
             switch (Suit.getRandomSuit()) {
@@ -104,11 +106,11 @@ public class PlayerHand {
                     break;
                 }
                 case HEARTS: {
-                    if (!areHeartsBroken){
+                    if (!canChooseHearts){
                         if (clubs.size()!=0 || diamonds.size()!=0 || spades.size()!=0){
                             break;
                         } else {
-                            areHeartsBroken = true;
+                            canChooseHearts = true;
                         }
                     }
                     if (hearts.size() > 0)
