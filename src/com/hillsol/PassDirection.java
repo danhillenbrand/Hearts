@@ -13,4 +13,12 @@ public enum PassDirection {
         this.displayValue = displayValue;
         this.offset = offset;
     }
+
+    public String getDisplayValue() {
+        return displayValue;
+    }
+
+    public int getOffset() {
+        return offset;
+    }
 }

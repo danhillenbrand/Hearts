@@ -29,17 +29,16 @@ public class Game {
     public void playGame() {
         Deck52 deck = new Deck52();
         System.out.println("Playing a Game ====================");
-        PassDirection[] passDirections = {  // should be in PassDirection enum
-                PassDirection.LEFT,
-                PassDirection.RIGHT,
-                PassDirection.ACROSS,
-                PassDirection.NONE};
-        int passCardsOffset = 0;
+        // set up passing instructions: left, right across, none
+        PassDirection[] passDirections = PassDirection.values();
+        int directionindex = 0;
+
         while (didSomeoneLose() == false) {
             Hand hand = new Hand(playerList);
+            int passCardsOffset = passDirections[directionindex].getOffset();
             hand.playHand(deck, passCardsOffset);
-            passCardsOffset++;
-            if (passCardsOffset > 3) passCardsOffset = 0;
+            directionindex++;
+            if (directionindex > 3) directionindex = 0;
         }
         System.out.println("=== Game Over ===");
     }

@@ -28,7 +28,7 @@ public class Hand {
         deck.shuffle();
         deck.shuffle();
         deal(deck); // todo: rotate dealer.
-        if (passCardsOffset < 4) passCards(passCardsOffset); // todo:  clarify condition for a human to read
+        if (passCardsOffset != 0) passCards(passCardsOffset); // todo:  clarify condition for a human to read
         areHeartsBroken = false;
         Player leadingPlayer = playTrick(getPlayerWithTwoOfClubs());
         for (int i = 1; i < 13; i++) {
@@ -50,20 +50,24 @@ public class Hand {
 
     private void passCards(int passCardsOffset) {  // todo: make passCardsOffset a human-understandable thing (Direction?)
          // get the cards being passed by all players before moving them to the receiving playerHand
+        System.out.println();
         for (int currentPlayerIndex = 0; currentPlayerIndex < 4; currentPlayerIndex++) {
             Player player = playerList.get(currentPlayerIndex);
             player.setThreePassingCards(player.executePassThreeCards());
+            System.out.println(player.getName() + " passes: " + player.getThreePassingCards());
         }
-
+        System.out.println();
         for (int currentPlayerIndex = 0; currentPlayerIndex < 4; currentPlayerIndex++) {
-            Player player = playerList.get(currentPlayerIndex);
-            for (Card card: player.getThreePassingCards()){
-                // todo: would it be better/easier to use a Linkedlist instead of ArrayList?
-                // todo: no, I think making the playerHand Set(s) instead of Lists might ease this code.  Or not.
-                int playerIndex = currentPlayerIndex + passCardsOffset;
-                if (playerIndex > 3) playerIndex = playerIndex - 4;
-                playerList.get(playerIndex).getPlayerHand().receiveCard(card);
+            Player givingPlayer = playerList.get(currentPlayerIndex);
+            // todo: would it be better/easier to use a Linkedlist instead of ArrayList?
+            // todo: no, I think making the playerHand Set(s) instead of Lists might ease this code.  Or not.
+            int receivingPlayerIndex = currentPlayerIndex + passCardsOffset;
+            if (receivingPlayerIndex > 3) receivingPlayerIndex = receivingPlayerIndex - 4;
+            Player receivingPlayer = playerList.get(receivingPlayerIndex);
+            for (Card card: givingPlayer.getThreePassingCards()){
+                receivingPlayer.getPlayerHand().receiveCard(card);
             }
+            System.out.println(receivingPlayer.getName() + " receives: " + givingPlayer.getThreePassingCards());
         }
     }
 
