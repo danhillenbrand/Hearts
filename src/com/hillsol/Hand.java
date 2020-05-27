@@ -27,8 +27,8 @@ public class Hand {
         deck.shuffle();
         deck.shuffle();
         deck.shuffle();
-        deal(deck); // todo: rotate dealer.
-        if (passCardsOffset != 0) passCards(passCardsOffset); // todo:  clarify condition for a human to read
+        deal(deck);
+        if (passCardsOffset != 0) passCards(passCardsOffset);
         areHeartsBroken = false;
         Player leadingPlayer = playTrick(getPlayerWithTwoOfClubs());
         for (int i = 1; i < 13; i++) {
@@ -41,14 +41,14 @@ public class Hand {
                 for (Player otherPlayer: playerList){
                     if (player!=otherPlayer) otherPlayer.addGameScore(26);
                 }
-                return;  //  todo: exit loop more noticeably so future dev doesn't miss it
+                return;
             } else {
                 player.addGameScore(player.getCurrentHandScore());
             }
         }
     }
 
-    private void passCards(int passCardsOffset) {  // todo: make passCardsOffset a human-understandable thing (Direction?)
+    private void passCards(int passCardsOffset) {
 
         // Choose cards to pass
         for (Player player : playerList) {
@@ -72,12 +72,12 @@ public class Hand {
     }
 
     private void deal(final Deck52 deck) {
-        int playerIndex = 0;    // todo: what's better then this manual index?
+        int playerIndex = 0;
         Player player = playerList.get(playerIndex);
         for (Card card : deck.getDeck()) {
             player.getPlayerHand().receiveCard(card);
             playerIndex++;
-            if (playerIndex >= playerList.size()) playerIndex = 0; // barf
+            if (playerIndex >= playerList.size()) playerIndex = 0;
             player = playerList.get(playerIndex);
         }
     }
@@ -92,7 +92,7 @@ public class Hand {
     }
 
     private Player playTrick(final Player leadingPlayer) {
-//        System.out.println("    Playing a Trick ====================");
+        System.out.println("    Playing a Trick ====================");
         Set<Card> trick = new HashSet();
         int playerPosition = playerList.indexOf(leadingPlayer);
         Suit suitLed = null;
@@ -109,10 +109,9 @@ public class Hand {
 
         for (int i = 0; i < 4; i++) {
             if (cardPlayed == null) {
-//                cardPlayed = player.getPlayerHand().getRandomCard();
                 cardPlayed = player.getPlayerHand().chooseCard(suitLed, areHeartsBroken);
             }
-//            System.out.println("          " + player.getName() + ": " + cardPlayed);
+            System.out.println("          " + player.getName() + ": " + cardPlayed);
             if (suitLed == null) {
                 suitLed = cardPlayed.getSuit();
                 highestRank = cardPlayed.getRank();
@@ -141,6 +140,7 @@ public class Hand {
                 trickTaker.addHandScore(13);
             }
         }
+//        System.out.println("       "+trickTaker.getName() + " took the trick.");
         return trickTaker;
     }
 }
