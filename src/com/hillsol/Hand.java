@@ -51,7 +51,7 @@ public class Hand {
     private void passCards(int passCardsOffset) {
 
         // Choose cards to pass
-        for (Player player : playerList) {
+        for (Player player : playerList) { // todo: utilize stream.randomize so all players choose cards concurrently.  Just for fun.
             player.setThreePassingCards(player.executePassThreeCards());
             playerList.indexOf(player);
 //            System.out.println(player.getName() + " passes: " + player.getThreePassingCards());
@@ -92,7 +92,9 @@ public class Hand {
     }
 
     private Player playTrick(final Player leadingPlayer) {
-        System.out.println("    Playing a Trick ====================");
+        if (areHeartsBroken) System.out.println("    Playing a Trick ==================== hearts broken ==");
+        else System.out.println("    Playing a Trick ====================");
+
         Set<Card> trick = new HashSet();
         int playerPosition = playerList.indexOf(leadingPlayer);
         Suit suitLed = null;
@@ -102,14 +104,16 @@ public class Hand {
 
         Player player = playerList.get(playerPosition);
         Card cardPlayed = player.getPlayerHand().getTwoOfClubs();
-        if (cardPlayed == null) cardPlayed = player.getPlayerHand().getRandomCard(areHeartsBroken);
+//        if (cardPlayed == null) cardPlayed = player.getPlayerHand().getRandomCard(areHeartsBroken);
+        if (cardPlayed == null) cardPlayed = player.executePlayCard(suitLed, areHeartsBroken);
 
         Rank highestRank = null;
         Player trickTaker = null;
 
         for (int i = 0; i < 4; i++) {
             if (cardPlayed == null) {
-                cardPlayed = player.getPlayerHand().chooseCard(suitLed, areHeartsBroken);
+//                cardPlayed = player.getPlayerHand().chooseCard(suitLed, areHeartsBroken);
+                cardPlayed = player.executePlayCard(suitLed, areHeartsBroken);
             }
             System.out.println("          " + player.getName() + ": " + cardPlayed);
             if (suitLed == null) {
@@ -136,6 +140,7 @@ public class Hand {
             trickTaker.addTakenCard(card);
             if (card.getSuit() == Suit.HEARTS) {
                 trickTaker.addHandScore(1);
+                areHeartsBroken = true;
             } else if (card.getSuit() == Suit.SPADES && card.getRank() == Rank.QUEEN) {
                 trickTaker.addHandScore(13);
             }

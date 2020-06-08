@@ -14,10 +14,11 @@ public class Player {
     private Set<Card> threePassingCards;
 
 //    public Player(String name, PassThreeStrategy passThreeStrategy, PlayHandStrategy playHandStrategy) {
-    public Player(String name, PassThreeStrategy passThreeStrategy) {
+    public Player(String name, PassThreeStrategy passThreeStrategy, PlayHandStrategy playHandStrategy) {
         this.name = name;
         this.playerHand = new PlayerHand();
         this.passThreeStrategy = passThreeStrategy;
+        this.playHandStrategy = playHandStrategy;
         takenCards = new HashSet<>();
         currentGameScore = 0;
     }
@@ -66,8 +67,8 @@ public class Player {
         return passThreeStrategy.passThreeCards(getPlayerHand());
     }
 
-    public Card executePlayCard() {
-        return playHandStrategy.playCard();
+    public Card executePlayCard(Suit leadingSuit, boolean heartsAreBroken) {
+        return playHandStrategy.playCard(leadingSuit, playerHand, heartsAreBroken);
     }
 
     public void addHandScore(int score){

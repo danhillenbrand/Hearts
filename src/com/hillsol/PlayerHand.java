@@ -57,40 +57,7 @@ public class PlayerHand {
         return null;
     }
 
-    public void playCard(Card card) {
-
-    }
-
-    // Will only be called after the leading card is played; will know which suit to try to play.
-    public Card chooseCard(Suit suitLed, boolean areHeartsBroken) {
-        switch (suitLed) {
-            case CLUBS: {
-                if (clubs.size() > 0)
-                    return (clubs.get((int) Math.random() * clubs.size()));
-                break;
-            }
-            case DIAMONDS: {
-                if (diamonds.size() > 0)
-                    return (diamonds.get((int) Math.random() * diamonds.size()));
-                break;
-            }
-            case HEARTS: {
-                if (hearts.size() > 0)
-                    return (hearts.get((int) Math.random() * hearts.size()));
-                break;
-            }
-            case SPADES: {
-                if (spades.size() > 0)
-                    return (spades.get((int) Math.random() * spades.size()));
-                break;
-            }
-        }
-
-        return getRandomCard(areHeartsBroken);
-    }
-// todo:  need to fix heartsBroken: can break hearts when you don't have suitLed, not ALL the other suits
-// todo: when choosing cards to play is refactored out from this class, can remove canChooseHearts parameter
-
+    // Called when randomly choosing cards to pass
     public Card getRandomCard(boolean canChooseHearts) {
         Card randomCard = null;
         while (randomCard == null) {
@@ -125,6 +92,15 @@ public class PlayerHand {
             }
         }
         return null;
+    }
+
+    public List <Suit> getCurrentSuits(){
+        List<Suit> currentSuits = new ArrayList<>();
+        if (clubs.size() > 0) currentSuits.add(CLUBS);
+        if (diamonds.size() > 0) currentSuits.add(DIAMONDS);
+        if (hearts.size() > 0) currentSuits.add(HEARTS);
+        if (spades.size() > 0) currentSuits.add(SPADES);
+        return currentSuits;
     }
 
     public void removeCard(Card card) {
@@ -167,5 +143,21 @@ public class PlayerHand {
         }
 
         return result.toString();
+    }
+
+    public List<Card> getClubs() {
+        return clubs;
+    }
+
+    public List<Card> getDiamonds() {
+        return diamonds;
+    }
+
+    public List<Card> getHearts() {
+        return hearts;
+    }
+
+    public List<Card> getSpades() {
+        return spades;
     }
 }
