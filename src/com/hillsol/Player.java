@@ -82,4 +82,10 @@ public class Player {
     public String toString(){
         return (name + "; score: " + currentGameScore + "; cards:" + playerHand);
     }
+
+    public void reset() {
+        resetHandScore();
+        currentHandScore = 0;
+        currentGameScore = 0;
+    }
 }

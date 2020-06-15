@@ -40,7 +40,7 @@ public class Game {
             directionindex++;
             if (directionindex > 3) directionindex = 0;
         }
-        System.out.println("=== Game Over ===");
+        System.out.println("============================ Game Over ==============================");
     }
 
     public void printPlayers() {
@@ -56,5 +56,11 @@ public class Game {
             if (player.getCurrentGameScore() >= 100) result = true;
         }
         return result;
+    }
+
+    public void reset() {
+        for(Player player: playerList){
+            player.reset();
+        }
     }
 }
