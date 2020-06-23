@@ -16,12 +16,15 @@ public class ObserveGame {
 
 
         PassThreeStrategy passThreeRandom = new PassThreeRandom();
+        PassThreeStrategy passThreeHighest = new PassThreeHighest();
+
         PlayHandStrategy playRandomCard = new PlaySemiRandomCard();
         PlayHandStrategy playHighAlways = new PlayHighestCardAlways();
+        PlayHandStrategy playLowAlways = new PlayLowestCardAlways();
 
         Player aaron = new Player("Aaron", passThreeRandom, playRandomCard);
-        Player freddie = new Player("Freddie", passThreeRandom, playRandomCard);
-        Player helena = new Player("Helena", passThreeRandom, playHighAlways);
+        Player freddie = new Player("Freddie", passThreeHighest, playRandomCard);
+        Player helena = new Player("Helena", passThreeRandom, playRandomCard);
         Player christina = new Player("Christina", passThreeRandom, playRandomCard);
         Game game = new Game(aaron, freddie, helena, christina);
 //        game.printPlayers();

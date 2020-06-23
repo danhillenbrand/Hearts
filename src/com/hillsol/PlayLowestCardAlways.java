@@ -1,12 +1,9 @@
 package com.hillsol;
 
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.stream.Stream;
 
-public class PlayHighestCardAlways implements PlayHandStrategy {
+public class PlayLowestCardAlways implements PlayHandStrategy {
 
     @Override
     public Card playCard(Suit leadingSuit, PlayerHand playerHand, boolean heartsAreBroken) {
@@ -37,7 +34,7 @@ public class PlayHighestCardAlways implements PlayHandStrategy {
                         // todo: add proper comparator to Card; make this work to return Card, not rank
                         byte rankValue = (byte) playerHand.getClubs().stream()
                                 .mapToInt(v -> v.getRank().getRankValue())
-                                .max().orElseThrow(NoSuchElementException::new);
+                                .min().orElseThrow(NoSuchElementException::new);
                         cardToPlay = playerHand.retrieveSpecificCard(Suit.CLUBS, rankValue);
                         if (null == cardToPlay) {
                             throw new RuntimeException("Couldn't find a CLUB to play.  Even after verifying one exists.");
@@ -52,7 +49,7 @@ public class PlayHighestCardAlways implements PlayHandStrategy {
                     if (playerHand.getDiamonds().size() > 0) {
                         byte rankValue = (byte) playerHand.getDiamonds().stream()
                                 .mapToInt(v -> v.getRank().getRankValue())
-                                .max().orElseThrow(NoSuchElementException::new);
+                                .min().orElseThrow(NoSuchElementException::new);
                         cardToPlay = playerHand.retrieveSpecificCard(Suit.DIAMONDS, rankValue);
                         if (null == cardToPlay) {
                             throw new RuntimeException("Couldn't find a DIAMOND to play.  Even after verifying one exists.");
@@ -67,7 +64,7 @@ public class PlayHighestCardAlways implements PlayHandStrategy {
                     if (playerHand.getHearts().size() > 0) {
                         byte rankValue = (byte) playerHand.getHearts().stream()
                                 .mapToInt(v -> v.getRank().getRankValue())
-                                .max().orElseThrow(NoSuchElementException::new);
+                                .min().orElseThrow(NoSuchElementException::new);
                         cardToPlay = playerHand.retrieveSpecificCard(Suit.HEARTS, rankValue);
                         if (null == cardToPlay) {
                             throw new RuntimeException("Couldn't find a HEART to play.  Even after verifying one exists.");
@@ -82,7 +79,7 @@ public class PlayHighestCardAlways implements PlayHandStrategy {
                     if (playerHand.getSpades().size() > 0) {
                         byte rankValue = (byte) playerHand.getSpades().stream()
                                 .mapToInt(v -> v.getRank().getRankValue())
-                                .max().orElseThrow(NoSuchElementException::new);
+                                .min().orElseThrow(NoSuchElementException::new);
                         cardToPlay = playerHand.retrieveSpecificCard(Suit.SPADES, rankValue);
                         if (null == cardToPlay) {
                             throw new RuntimeException("Couldn't find a SPADE to play.  Even after verifying one exists.");
