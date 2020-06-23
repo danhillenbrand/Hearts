@@ -1,7 +1,9 @@
 package com.hillsol;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public class Game {
     /*
@@ -28,19 +30,21 @@ public class Game {
 
     public void playGame() {
         Deck52 deck = new Deck52();
-        System.out.println("Playing a Game ====================");
+//         loggie
+//        System.out.println("Playing a Game ====================");
         // set up passing instructions: left, right across, none
         PassDirection[] passDirections = PassDirection.values();
         int directionindex = 0;
 
         while (didSomeoneLose() == false) {
-            Hand hand = new Hand(playerList);
+            Round round = new Round(playerList);
             int passCardsOffset = passDirections[directionindex].getOffset();
-            hand.playHand(deck, passCardsOffset);
+            round.playHand(deck, passCardsOffset);
             directionindex++;
             if (directionindex > 3) directionindex = 0;
         }
-        System.out.println("============================ Game Over ==============================");
+//         loggie
+//        System.out.println("============================ Game Over ==============================");
     }
 
     public void printPlayers() {
@@ -48,6 +52,23 @@ public class Game {
         for (Player player : playerList) {
             System.out.println(player);
         }
+    }
+
+    public Set<Player> getWinningPlayers(){
+        if (!didSomeoneLose()) return null;
+        Set<Player> winners = new HashSet<>();
+        int lowScore = 9999;
+        for (Player player : playerList) {
+            if (player.getCurrentGameScore() < lowScore){
+                lowScore = player.getCurrentGameScore();
+            }
+        }
+        for (Player player : playerList) {
+            if (player.getCurrentGameScore() == lowScore){
+                winners.add(player);
+            }
+        }
+        return winners;
     }
 
     private boolean didSomeoneLose() {
@@ -61,6 +82,12 @@ public class Game {
     public void reset() {
         for(Player player: playerList){
             player.reset();
+        }
+    }
+
+    public void printStatistics(){
+        for (Player player: playerList){
+            System.out.println(player.getOverallFirstPlaceGames() + " wins - " + player.getName());
         }
     }
 }

@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-public class Hand {
+public class Round {
 
 
 
@@ -15,12 +15,13 @@ public class Hand {
 
 
 
-    public Hand(List playerList) {
+    public Round(List playerList) {
         this.playerList = playerList;
     }
 
     public void playHand(Deck52 deck, int passCardsOffset) {
-        System.out.println("  Playing a Hand ==================== " + passCardsOffset);
+//         loggie
+//        System.out.println("  Playing a Hand ==================== " + passCardsOffset);
         for (Player player : playerList) {
             player.resetHandScore();
         }
@@ -34,10 +35,11 @@ public class Hand {
         for (int i = 1; i < 13; i++) {
             leadingPlayer = playTrick(leadingPlayer);
         }
-        for (Player p:playerList) System.out.println(p.getName()+" : "+p.getCurrentGameScore());
+//         loggie
+//        for (Player p:playerList) System.out.println(p.getName()+" : "+p.getCurrentGameScore());
         for (Player player : playerList) {
             if (player.getCurrentHandScore()==26){
-                System.out.println(player.getName() + " shot the moon! ====================================");
+//                System.out.println(player.getName() + " shot the moon! ====================================");
                 for (Player otherPlayer: playerList){
                     if (player!=otherPlayer) otherPlayer.addGameScore(26);
                 }
@@ -91,9 +93,13 @@ public class Hand {
         return null;
     }
 
+    /*
+    ** Returns the player who took the trick
+     */
     private Player playTrick(final Player leadingPlayer) {
-        if (areHeartsBroken) System.out.println("    Playing a Trick ==================== hearts broken ==");
-        else System.out.println("    Playing a Trick ====================");
+//         loggie
+//        if (areHeartsBroken) System.out.println("    Playing a Trick ==================== hearts broken ==");
+//        else System.out.println("    Playing a Trick ====================");
 
         Set<Card> trick = new HashSet();
         int playerPosition = playerList.indexOf(leadingPlayer);
@@ -115,7 +121,8 @@ public class Hand {
 //                cardPlayed = player.getPlayerHand().chooseCard(suitLed, areHeartsBroken);
                 cardPlayed = player.executePlayCard(suitLed, areHeartsBroken);
             }
-            System.out.println("          " + player.getName() + ": " + cardPlayed);
+//         loggie
+//            System.out.println("          " + player.getName() + ": " + cardPlayed);
             if (suitLed == null) {
                 suitLed = cardPlayed.getSuit();
                 highestRank = cardPlayed.getRank();

@@ -12,6 +12,7 @@ public class Player {
     private PassThreeStrategy passThreeStrategy;
     private PlayHandStrategy playHandStrategy;
     private Set<Card> threePassingCards;
+    private int overallFirstPlaceGames;
 
 //    public Player(String name, PassThreeStrategy passThreeStrategy, PlayHandStrategy playHandStrategy) {
     public Player(String name, PassThreeStrategy passThreeStrategy, PlayHandStrategy playHandStrategy) {
@@ -21,6 +22,7 @@ public class Player {
         this.playHandStrategy = playHandStrategy;
         takenCards = new HashSet<>();
         currentGameScore = 0;
+        overallFirstPlaceGames = 0;
     }
 
     public String getName() {
@@ -73,6 +75,14 @@ public class Player {
 
     public void addHandScore(int score){
         currentHandScore += score;
+    }
+
+    public void addWin(){
+        overallFirstPlaceGames++;
+    }
+
+    public int getOverallFirstPlaceGames() {
+        return overallFirstPlaceGames;
     }
 
     public void resetHandScore(){

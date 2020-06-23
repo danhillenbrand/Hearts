@@ -16,11 +16,11 @@ public enum Rank {
     ACE("Ace", (byte) 13);
 
     private final String displayValue;
-    private final byte rank;
+    private final byte rankValue;
 
     Rank(String displayValue, byte rank) {
         this.displayValue = displayValue;
-        this.rank = rank;
+        this.rankValue = rank;
     }
 
     public String getDisplayValue() {
@@ -28,6 +28,6 @@ public enum Rank {
     }
 
     public byte getRankValue() {
-        return rank;
+        return rankValue;
     }
 }

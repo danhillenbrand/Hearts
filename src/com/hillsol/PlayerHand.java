@@ -103,6 +103,40 @@ public class PlayerHand {
         return currentSuits;
     }
 
+    public Card retrieveSpecificCard(Suit suit, byte rankValue){
+        switch (suit) {
+            case CLUBS: {
+                for (Card card : clubs) {
+                    if (card.getRank().getRankValue() == rankValue)
+                        return card;
+                }
+                break;
+            }
+            case DIAMONDS: {
+                for (Card card : diamonds) {
+                    if (card.getRank().getRankValue() == rankValue)
+                        return card;
+                }
+                break;
+            }
+            case HEARTS: {
+                for (Card card : hearts) {
+                    if (card.getRank().getRankValue() == rankValue)
+                        return card;
+                }
+                break;
+            }
+            case SPADES: {
+                for (Card card : spades) {
+                    if (card.getRank().getRankValue() == rankValue)
+                        return card;
+                }
+                break;
+            }
+        }
+        return null;
+    }
+
     public void removeCard(Card card) {
         switch (card.getSuit()) {
             case CLUBS: {
