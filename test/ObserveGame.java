@@ -17,12 +17,13 @@ public class ObserveGame {
 
         PassThreeStrategy passThreeRandom = new PassThreeRandom();
         PassThreeStrategy passThreeHighest = new PassThreeHighest();
+        PassThreeStrategy passSpades = new PassSpades();
 
         PlayHandStrategy playRandomCard = new PlaySemiRandomCard();
         PlayHandStrategy playHighAlways = new PlayHighestCardAlways();
         PlayHandStrategy playLowAlways = new PlayLowestCardAlways();
 
-        Player aaron = new Player("Aaron", passThreeRandom, playRandomCard);
+        Player aaron = new Player("Aaron", passSpades, playRandomCard);
         Player freddie = new Player("Freddie", passThreeHighest, playRandomCard);
         Player helena = new Player("Helena", passThreeRandom, playRandomCard);
         Player christina = new Player("Christina", passThreeRandom, playRandomCard);

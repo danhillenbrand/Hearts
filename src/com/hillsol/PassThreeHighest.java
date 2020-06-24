@@ -6,21 +6,13 @@ import java.util.Set;
 public class PassThreeHighest implements PassThreeStrategy {
     @Override
     public Set<Card> passThreeCards(PlayerHand playerHand) {
-        Set<Card> threeCards = new HashSet<Card>();
+        Set<Card> threeCards = new HashSet<>();
         Set<Card> fullHand = new HashSet<>();
 
-        for (Card card : playerHand.getClubs()) {
-            fullHand.add(card);
-        }
-        for (Card card : playerHand.getDiamonds()) {
-            fullHand.add(card);
-        }
-        for (Card card : playerHand.getHearts()) {
-            fullHand.add(card);
-        }
-        for (Card card : playerHand.getSpades()) {
-            fullHand.add(card);
-        }
+        fullHand.addAll(playerHand.getSpades());
+        fullHand.addAll(playerHand.getClubs());
+        fullHand.addAll(playerHand.getDiamonds());
+        fullHand.addAll(playerHand.getHearts());
 
         for (int rank = 13; rank > 0; rank--) {
             for (Card card : fullHand) {
