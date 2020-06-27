@@ -1,9 +1,12 @@
-package com.hillsol;
+package com.hillsol.passthreestrategies;
+
+import com.hillsol.Card;
+import com.hillsol.PlayerHand;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class PassThreeRandom implements  PassThreeStrategy{
+public class PassThreeRandom implements PassThreeStrategy {
     @Override
     public Set<Card> passThreeCards(PlayerHand playerHand) {
         Set<Card> threeCards  = new HashSet<Card>();

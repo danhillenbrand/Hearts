@@ -1,5 +1,8 @@
 package com.hillsol;
 
+import com.hillsol.passthreestrategies.PassThreeStrategy;
+import com.hillsol.playhandstrategies.PlayHandStrategy;
+
 import java.util.HashSet;
 import java.util.Set;
 

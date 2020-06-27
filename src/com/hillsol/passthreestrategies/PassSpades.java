@@ -1,4 +1,8 @@
-package com.hillsol;
+package com.hillsol.passthreestrategies;
+
+import com.hillsol.Card;
+import com.hillsol.PlayerHand;
+import com.hillsol.passthreestrategies.PassThreeStrategy;
 
 import java.util.HashSet;
 import java.util.Set;

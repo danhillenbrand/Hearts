@@ -1,7 +1,10 @@
-package com.hillsol;
+package com.hillsol.playhandstrategies;
+
+import com.hillsol.Card;
+import com.hillsol.PlayerHand;
+import com.hillsol.Suit;
 
 import java.util.List;
-import java.util.Set;
 
 public class PlaySemiRandomCard implements PlayHandStrategy {
     /*

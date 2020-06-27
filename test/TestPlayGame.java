@@ -1,4 +1,8 @@
 import com.hillsol.*;
+import com.hillsol.passthreestrategies.PassThreeRandom;
+import com.hillsol.passthreestrategies.PassThreeStrategy;
+import com.hillsol.playhandstrategies.PlayHandStrategy;
+import com.hillsol.playhandstrategies.PlaySemiRandomCard;
 
 public class TestPlayGame {
 
