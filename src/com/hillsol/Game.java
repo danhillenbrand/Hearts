@@ -87,7 +87,9 @@ public class Game {
 
     public void printStatistics(){
         for (Player player: playerList){
-            System.out.println(player.getOverallFirstPlaceGames() + " wins - " + player.getName());
+            System.out.println(player.getOverallFirstPlaceGames() + " wins - " + player.getName()
+            + "; PlayHandStrategy: " + player.getPlayHandStrategyName()
+            + "; PassCardStrategy: " + player.getPassThreeStrategyName());
         }
     }
 }

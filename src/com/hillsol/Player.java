@@ -88,6 +88,14 @@ public class Player {
         return overallFirstPlaceGames;
     }
 
+    public String getPassThreeStrategyName() {
+        return passThreeStrategy.getClass().getSimpleName();
+    }
+
+    public String getPlayHandStrategyName() {
+        return playHandStrategy.getClass().getSimpleName();
+    }
+
     public void resetHandScore(){
         currentHandScore = 0;
     }
