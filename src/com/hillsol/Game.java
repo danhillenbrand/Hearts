@@ -54,17 +54,17 @@ public class Game {
         }
     }
 
-    public Set<Player> getWinningPlayers(){
+    public Set<Player> getWinningPlayers() {
         if (!didSomeoneLose()) return null;
         Set<Player> winners = new HashSet<>();
         int lowScore = 9999;
         for (Player player : playerList) {
-            if (player.getCurrentGameScore() < lowScore){
+            if (player.getCurrentGameScore() < lowScore) {
                 lowScore = player.getCurrentGameScore();
             }
         }
         for (Player player : playerList) {
-            if (player.getCurrentGameScore() == lowScore){
+            if (player.getCurrentGameScore() == lowScore) {
                 winners.add(player);
             }
         }
@@ -80,16 +80,17 @@ public class Game {
     }
 
     public void reset() {
-        for(Player player: playerList){
+        for (Player player : playerList) {
             player.reset();
         }
     }
 
-    public void printStatistics(){
-        for (Player player: playerList){
+    public void printStatistics() {
+        for (Player player : playerList) {
             System.out.println(player.getOverallFirstPlaceGames() + " wins - " + player.getName()
-            + "; PlayHandStrategy: " + player.getPlayHandStrategyName()
-            + "; PassCardStrategy: " + player.getPassThreeStrategyName());
+                    + "; " + player.getPassThreeStrategyName()
+                    + "; " + player.getPlayHandStrategyName()
+            );
         }
     }
 }
