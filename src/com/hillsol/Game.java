@@ -57,7 +57,7 @@ public class Game {
     public Set<Player> getWinningPlayers() {
         if (!didSomeoneLose()) return null;
         Set<Player> winners = new HashSet<>();
-        int lowScore = 9999;
+        int lowScore = Integer.MAX_VALUE;
         for (Player player : playerList) {
             if (player.getCurrentGameScore() < lowScore) {
                 lowScore = player.getCurrentGameScore();

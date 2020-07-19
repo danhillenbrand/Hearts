@@ -1,8 +1,5 @@
 import com.hillsol.*;
-import com.hillsol.passthreestrategies.PassSpades;
-import com.hillsol.passthreestrategies.PassThreeHighest;
-import com.hillsol.passthreestrategies.PassThreeRandom;
-import com.hillsol.passthreestrategies.PassThreeStrategy;
+import com.hillsol.passthreestrategies.*;
 import com.hillsol.playhandstrategies.PlayHandStrategy;
 import com.hillsol.playhandstrategies.PlayHighestCardAlways;
 import com.hillsol.playhandstrategies.PlayLowestCardAlways;
@@ -26,14 +23,15 @@ public class ObserveGame {
         PassThreeStrategy passThreeRandom = new PassThreeRandom();
         PassThreeStrategy passThreeHighest = new PassThreeHighest();
         PassThreeStrategy passSpades = new PassSpades();
+        PassThreeStrategy passHeartsFirst = new PassHearts();
 
         PlayHandStrategy playRandomCard = new PlaySemiRandomCard();
         PlayHandStrategy playHighAlways = new PlayHighestCardAlways();
         PlayHandStrategy playLowAlways = new PlayLowestCardAlways();
 
         Player aaron = new Player("Aaron", passSpades, playRandomCard);
-        Player freddie = new Player("Freddie", passThreeHighest, playRandomCard);
-        Player helena = new Player("Helena", passThreeRandom, playHighAlways);
+        Player freddie = new Player("Freddie", passHeartsFirst, playRandomCard);
+        Player helena = new Player("Helena", passThreeRandom, playRandomCard);
         Player christina = new Player("Christina", passThreeRandom, playRandomCard);
         Game game = new Game(aaron, freddie, helena, christina);
 //        game.printPlayers();

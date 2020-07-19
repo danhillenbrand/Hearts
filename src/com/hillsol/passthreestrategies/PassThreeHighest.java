@@ -12,10 +12,10 @@ public class PassThreeHighest implements PassThreeStrategy {
         Set<Card> threeCards = new HashSet<>();
         Set<Card> fullHand = new HashSet<>();
 
+        fullHand.addAll(playerHand.getHearts());
         fullHand.addAll(playerHand.getSpades());
         fullHand.addAll(playerHand.getClubs());
         fullHand.addAll(playerHand.getDiamonds());
-        fullHand.addAll(playerHand.getHearts());
 
         for (int rank = 13; rank > 0; rank--) {
             for (Card card : fullHand) {
