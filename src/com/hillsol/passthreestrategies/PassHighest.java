@@ -6,7 +6,7 @@ import com.hillsol.PlayerHand;
 import java.util.HashSet;
 import java.util.Set;
 
-public class PassThreeHighest implements PassThreeStrategy {
+public class PassHighest implements PassThreeStrategy {
     @Override
     public Set<Card> passThreeCards(PlayerHand playerHand) {
         Set<Card> threeCards = new HashSet<>();

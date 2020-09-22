@@ -194,4 +194,16 @@ public class PlayerHand {
     public List<Card> getSpades() {
         return spades;
     }
+
+    public List<Card> getCardsOfSuit(Suit suit){
+        switch (suit){
+            case CLUBS: return clubs;
+            case HEARTS: return hearts;
+            case SPADES: return spades;
+            case DIAMONDS: return diamonds;
+            default: {
+                throw new RuntimeException("Didn't find Suit requested:  " + suit.getDisplayValue());
+            }
+        }
+    }
 }

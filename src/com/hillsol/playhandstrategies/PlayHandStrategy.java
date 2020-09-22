@@ -4,6 +4,8 @@ import com.hillsol.Card;
 import com.hillsol.PlayerHand;
 import com.hillsol.Suit;
 
+import java.util.Set;
+
 public interface PlayHandStrategy {
-    public Card playCard(Suit leadingSuit, PlayerHand playerHand, boolean heartsAreBroken);
+    public Card playCard(Set<Card> trick, Suit leadingSuit, PlayerHand playerHand, boolean heartsAreBroken);
 }

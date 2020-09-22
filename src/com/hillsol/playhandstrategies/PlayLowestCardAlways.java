@@ -6,11 +6,12 @@ import com.hillsol.Suit;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 public class PlayLowestCardAlways implements PlayHandStrategy {
 
     @Override
-    public Card playCard(Suit leadingSuit, PlayerHand playerHand, boolean heartsAreBroken) {
+    public Card playCard(Set<Card> trick, Suit leadingSuit, PlayerHand playerHand, boolean heartsAreBroken) {
         // This method will not be called when a player has the two of clubs.
         // It's already been taken care of.
 

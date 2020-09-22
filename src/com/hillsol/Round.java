@@ -94,7 +94,7 @@ public class Round {
     }
 
     /*
-    ** Returns the player who took the trick
+    ** Returns the player who takes the trick
      */
     private Player playTrick(final Player leadingPlayer) {
 //         loggie
@@ -110,16 +110,14 @@ public class Round {
 
         Player player = playerList.get(playerPosition);
         Card cardPlayed = player.getPlayerHand().getTwoOfClubs();
-//        if (cardPlayed == null) cardPlayed = player.getPlayerHand().getRandomCard(areHeartsBroken);
-        if (cardPlayed == null) cardPlayed = player.executePlayCard(suitLed, areHeartsBroken);
+        if (cardPlayed == null) cardPlayed = player.executePlayCard(trick, suitLed, areHeartsBroken);
 
         Rank highestRank = null;
         Player trickTaker = null;
 
         for (int i = 0; i < 4; i++) {
             if (cardPlayed == null) {
-//                cardPlayed = player.getPlayerHand().chooseCard(suitLed, areHeartsBroken);
-                cardPlayed = player.executePlayCard(suitLed, areHeartsBroken);
+                cardPlayed = player.executePlayCard(trick, suitLed, areHeartsBroken);
             }
 //         loggie
 //            System.out.println("          " + player.getName() + ": " + cardPlayed);

@@ -72,8 +72,8 @@ public class Player {
         return passThreeStrategy.passThreeCards(getPlayerHand());
     }
 
-    public Card executePlayCard(Suit leadingSuit, boolean heartsAreBroken) {
-        return playHandStrategy.playCard(leadingSuit, playerHand, heartsAreBroken);
+    public Card executePlayCard(Set<Card> trick, Suit leadingSuit, boolean heartsAreBroken) {
+        return playHandStrategy.playCard(trick, leadingSuit, playerHand, heartsAreBroken);
     }
 
     public void addHandScore(int score){

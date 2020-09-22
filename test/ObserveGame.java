@@ -1,9 +1,6 @@
 import com.hillsol.*;
 import com.hillsol.passthreestrategies.*;
-import com.hillsol.playhandstrategies.PlayHandStrategy;
-import com.hillsol.playhandstrategies.PlayHighestCardAlways;
-import com.hillsol.playhandstrategies.PlayLowestCardAlways;
-import com.hillsol.playhandstrategies.PlaySemiRandomCard;
+import com.hillsol.playhandstrategies.*;
 
 import java.util.Set;
 
@@ -20,19 +17,20 @@ public class ObserveGame {
         System.out.println("============ Playing " + numberOfGames + " game(s) ==========");
 
 
-        PassThreeStrategy passThreeRandom = new PassThreeRandom();
-        PassThreeStrategy passThreeHighest = new PassThreeHighest();
+        PassThreeStrategy passRandom = new PassRandom();
+        PassThreeStrategy passHighest = new PassHighest();
         PassThreeStrategy passSpades = new PassSpades();
-        PassThreeStrategy passHeartsFirst = new PassHearts();
+        PassThreeStrategy passHearts = new PassHearts();
 
         PlayHandStrategy playRandomCard = new PlaySemiRandomCard();
         PlayHandStrategy playHighAlways = new PlayHighestCardAlways();
         PlayHandStrategy playLowAlways = new PlayLowestCardAlways();
+        PlayHandStrategy playCeilingCard = new PlayCeilingCard();
 
         Player aaron = new Player("Aaron", passSpades, playRandomCard);
-        Player freddie = new Player("Freddie", passHeartsFirst, playRandomCard);
-        Player helena = new Player("Helena", passThreeRandom, playRandomCard);
-        Player christina = new Player("Christina", passThreeRandom, playRandomCard);
+        Player freddie = new Player("Freddie", passHearts, playRandomCard);
+        Player helena = new Player("Helena", passHighest, playRandomCard);
+        Player christina = new Player("Christina", passSpades, playCeilingCard);
         Game game = new Game(aaron, freddie, helena, christina);
 //        game.printPlayers();
         for (int i = 0; i < numberOfGames; i++) {
