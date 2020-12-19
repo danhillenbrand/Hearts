@@ -2,6 +2,8 @@ package com.hillsol;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.OptionalInt;
 
 import static com.hillsol.Suit.*;
 
@@ -205,5 +207,24 @@ public class PlayerHand {
                 throw new RuntimeException("Didn't find Suit requested:  " + suit.getDisplayValue());
             }
         }
+    }
+
+    public Optional<Card> getLowestCardOfSuit(Suit suit){
+        Optional <Card> lowestRankingCard = Optional.empty();
+        OptionalInt lowestRankValue = getCardsOfSuit(suit).stream()
+                .mapToInt(v -> v.getRank().getRankValue())
+                .min();
+        if (lowestRankValue.isPresent()){
+            lowestRankingCard = Optional.of(retrieveSpecificCard(suit, (byte) lowestRankValue.getAsInt()));
+        }
+        return lowestRankingCard;
+    }
+
+    public boolean hasQueenOfSpades() {
+        for (Card card : spades) {
+            if (card.getRank() == Rank.QUEEN)
+                return true;
+        }
+        return false;
     }
 }
