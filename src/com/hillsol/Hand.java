@@ -5,23 +5,16 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-public class Round {
-
-
+public class Hand {
 
     List<Player> playerList = new LinkedList();
     private boolean areHeartsBroken;
 
-
-
-
-    public Round(List playerList) {
+    public Hand(List playerList) {
         this.playerList = playerList;
     }
 
     public void playHand(Deck52 deck, int passCardsOffset) {
-//         loggie
-//        System.out.println("  Playing a Hand ==================== " + passCardsOffset);
         for (Player player : playerList) {
             player.resetHandScore();
         }
@@ -35,8 +28,6 @@ public class Round {
         for (int i = 1; i < 13; i++) {
             leadingPlayer = playTrick(leadingPlayer);
         }
-//         loggie
-//        for (Player p:playerList) System.out.println(p.getName()+" : "+p.getCurrentGameScore());
         for (Player player : playerList) {
             if (player.getCurrentHandScore()==26){
 //                System.out.println(player.getName() + " shot the moon! ====================================");
@@ -51,15 +42,11 @@ public class Round {
     }
 
     private void passCards(int passCardsOffset) {
-
-        // Choose cards to pass
         for (Player player : playerList) { // todo: utilize stream.randomize so all players choose cards concurrently.  Just for fun.
             player.setThreePassingCards(player.executePassThreeCards());
             playerList.indexOf(player);
-//            System.out.println(player.getName() + " passes: " + player.getThreePassingCards());
         }
 
-        // Pass cards
         for (Player givingPlayer : playerList) {
             int currentPlayerIndex = playerList.indexOf(givingPlayer);
             int receivingPlayerIndex = currentPlayerIndex + passCardsOffset;
@@ -69,7 +56,6 @@ public class Round {
             for (Card card: givingPlayer.getThreePassingCards()){
                 receivingPlayer.getPlayerHand().receiveCard(card);
             }
-//            System.out.println(receivingPlayer.getName() + " receives: " + givingPlayer.getThreePassingCards());
         }
     }
 
@@ -142,7 +128,6 @@ public class Round {
             }
         }
         for (Card card : trick) {
-            trickTaker.addTakenCard(card);
             if (card.getSuit() == Suit.HEARTS) {
                 trickTaker.addHandScore(1);
                 areHeartsBroken = true;
@@ -150,7 +135,6 @@ public class Round {
                 trickTaker.addHandScore(13);
             }
         }
-//        System.out.println("       "+trickTaker.getName() + " took the trick.");
         return trickTaker;
     }
 }

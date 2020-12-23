@@ -8,13 +8,12 @@ import java.util.Set;
 public class Game {
     /*
     Create 4 players;
-    Designate the order of players for playing the game.
-    play hands until a player exceeds 100 points:
+    Designate the order of players for playing the game.  todo: make sure the player positions are shuffled in multiple games
+    play hands until a player breaks 100 points:
     - shuffle cards
     - deal cards
-    - cycle through: pass left, pass right, pass across, no passing; for every loop
-        - advance PassCycle
-    - play thirteen rounds of tricks, leading with 2 of clubs, then taker of previous trick
+    - cycle for every hand: pass left, pass right, pass across, no passing;
+    - play thirteen hands of tricks, leading with 2 of clubs, then taker of previous trick
     - sum scores; don't forget that shoot-the-moon thing
 
      */
@@ -32,14 +31,14 @@ public class Game {
         Deck52 deck = new Deck52();
 //         loggie
 //        System.out.println("Playing a Game ====================");
-        // set up passing instructions: left, right across, none
+        // set up pass-three-cards instructions: left, right, across, none
         PassDirection[] passDirections = PassDirection.values();
         int directionindex = 0;
 
         while (didSomeoneLose() == false) {
-            Round round = new Round(playerList);
+            Hand hand = new Hand(playerList);
             int passCardsOffset = passDirections[directionindex].getOffset();
-            round.playHand(deck, passCardsOffset);
+            hand.playHand(deck, passCardsOffset);
             directionindex++;
             if (directionindex > 3) directionindex = 0;
         }

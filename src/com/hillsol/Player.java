@@ -8,22 +8,19 @@ import java.util.Set;
 
 public class Player {
     private final String name;
-    private PlayerHand playerHand;
-    private Set<Card> takenCards;
+    private final PlayerHand playerHand;
     private int currentHandScore;
     private int currentGameScore;
-    private PassThreeStrategy passThreeStrategy;
-    private PlayHandStrategy playHandStrategy;
+    private final PassThreeStrategy passThreeStrategy;
+    private final PlayHandStrategy playHandStrategy;
     private Set<Card> threePassingCards;
     private int overallFirstPlaceGames;
 
-//    public Player(String name, PassThreeStrategy passThreeStrategy, PlayHandStrategy playHandStrategy) {
     public Player(String name, PassThreeStrategy passThreeStrategy, PlayHandStrategy playHandStrategy) {
         this.name = name;
         this.playerHand = new PlayerHand();
         this.passThreeStrategy = passThreeStrategy;
         this.playHandStrategy = playHandStrategy;
-        takenCards = new HashSet<>();
         currentGameScore = 0;
         overallFirstPlaceGames = 0;
     }
@@ -34,18 +31,6 @@ public class Player {
 
     public PlayerHand getPlayerHand() {
         return playerHand;
-    }
-
-    public Set<Card> getTakenCards() {
-        return takenCards;
-    }
-
-    public void addTakenCard(Card takenCard) {
-        this.takenCards.add(takenCard);
-    }
-
-    public void clearTakenCards(){
-        takenCards.clear();
     }
 
     public int getCurrentGameScore() {

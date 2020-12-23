@@ -77,6 +77,6 @@ public class PassSpades implements PassThreeStrategy {
                 }
             }
         }
-        return null; // should never get here
+        throw new RuntimeException("Execute Programmer -- should never get here");
     }
 }
