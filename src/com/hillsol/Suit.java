@@ -9,7 +9,7 @@ public enum Suit {
 
     private final String displayValue;
 
-    Suit(String displayValue) {
+    Suit(final String displayValue) {
         this.displayValue = displayValue;
     }
 

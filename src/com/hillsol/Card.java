@@ -6,7 +6,7 @@ public final class Card {
     private Rank rank;
     private Suit suit;
 
-    public Card(Rank rank, Suit suit) {
+    public Card(final Rank rank, final Suit suit) {
         this.rank = rank;
         this.suit = suit;
     }
@@ -20,7 +20,7 @@ public final class Card {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Card card = (Card) o;

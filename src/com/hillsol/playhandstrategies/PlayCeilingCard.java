@@ -20,16 +20,17 @@ import java.util.*;
 public class PlayCeilingCard implements PlayHandStrategy {
 
     @Override
-    public Card playCard(Set<Card> trick, Suit leadingSuit, PlayerHand playerHand, boolean heartsAreBroken) {
-//        System.out.print("Trick: " + trick);
-//        System.out.println("");
-
+    public Card playCard(final Set<Card> trick, final Suit receivedLeadingSuit, final PlayerHand playerHand, final boolean heartsAreBroken) {
+        Suit leadingSuit = receivedLeadingSuit;
         Card cardToPlay = null;
-        if (null == leadingSuit) {
-            // this player must lead a suit.  Can't lead hearts unless broken or only gots hearts.
+
+        if (null == receivedLeadingSuit) {
+            // this player must lead a card.  First, choose a suit to lead with:
             List<Suit> heldSuits = playerHand.getCurrentSuits();
             boolean onlyGotsHearts = (heldSuits.size() == 1 && heldSuits.get(0) == Suit.HEARTS);
-            if (!heartsAreBroken && !onlyGotsHearts) {
+            if (heartsAreBroken || onlyGotsHearts) {
+                // legal to lead a Heart in this case.
+            } else {
                 heldSuits.remove(Suit.HEARTS);  // don't care if it wasn't there
             }
             leadingSuit = heldSuits.get((int) (Math.random() * heldSuits.size()));
@@ -76,7 +77,7 @@ public class PlayCeilingCard implements PlayHandStrategy {
         }
     }
 
-    public boolean hasQueenOfSpades(PlayerHand playerHand) {
+    public boolean hasQueenOfSpades(final PlayerHand playerHand) {
         for (Card card : playerHand.getSpades()) {
             if (card.getRank() == Rank.QUEEN)
                 return true;
@@ -84,7 +85,7 @@ public class PlayCeilingCard implements PlayHandStrategy {
         return false;
     }
 
-    public Card getAceOrKingOfSpades(PlayerHand playerHand) {
+    public Card getAceOrKingOfSpades(final PlayerHand playerHand) {
         for (Card card : playerHand.getSpades()) {
             // the order they're found won't matter
             if (card.getRank() == Rank.ACE)
@@ -104,7 +105,7 @@ public class PlayCeilingCard implements PlayHandStrategy {
      */
     // todo: shouldn't select a Spade unless all other suits are empty.
     // later todo: but only if the Queen of Spades hasn't been played yet.
-    public Card getHighestCardInHand(PlayerHand playerHand) {
+    public Card getHighestCardInHand(final PlayerHand playerHand) {
         List<Card> highestCardsOfHeldSuits = new ArrayList<>();
         byte highestRankValue = 0;
         if (playerHand.getHearts().size() > 0) {

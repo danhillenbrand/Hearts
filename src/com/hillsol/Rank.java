@@ -18,7 +18,7 @@ public enum Rank {
     private final String displayValue;
     private final byte rankValue;
 
-    Rank(String displayValue, byte rank) {
+    Rank(final String displayValue, final byte rank) {
         this.displayValue = displayValue;
         this.rankValue = rank;
     }

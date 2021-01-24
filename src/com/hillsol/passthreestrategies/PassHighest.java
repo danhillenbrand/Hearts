@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class PassHighest implements PassThreeStrategy {
     @Override
-    public Set<Card> passThreeCards(PlayerHand playerHand) {
+    public Set<Card> passThreeCards(final PlayerHand playerHand) {
         Set<Card> threeCards = new HashSet<>();
         Set<Card> fullHand = new HashSet<>();
 
@@ -29,7 +29,6 @@ public class PassHighest implements PassThreeStrategy {
                 }
             }
         }
-
-        return null; // should never get here
+        throw new RuntimeException("Execute Programmer; should never get to this code");
     }
 }

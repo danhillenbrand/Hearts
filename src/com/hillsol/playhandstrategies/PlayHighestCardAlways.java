@@ -11,19 +11,24 @@ import java.util.Set;
 public class PlayHighestCardAlways implements PlayHandStrategy {
 
     @Override
-    public Card playCard(Set<Card> trick, Suit leadingSuit, PlayerHand playerHand, boolean heartsAreBroken) {
+    public Card playCard(final Set<Card> trick, final Suit receivedLeadingSuit, final PlayerHand playerHand, final boolean heartsAreBroken) {
         // This method will not be called when a player has the two of clubs.
         // It's already been taken care of.
 
+        Suit leadingSuit = receivedLeadingSuit;
         Card cardToPlay = null;
-        if (null == leadingSuit) {
-            // this player must lead a suit.  Can't lead hearts unless broken or only gots hearts.
+
+        if (null == receivedLeadingSuit) {
+            // this player must lead a card.  First, choose a suit to lead with:
             List<Suit> heldSuits = playerHand.getCurrentSuits();
-            boolean onlygotsHearts = (heldSuits.size() == 1 && heldSuits.get(0) == Suit.HEARTS);
-            if (!heartsAreBroken && !onlygotsHearts) {
+            boolean onlyGotsHearts = (heldSuits.size() == 1 && heldSuits.get(0) == Suit.HEARTS);
+            if (heartsAreBroken || onlyGotsHearts) {
+                // legal to lead a Heart in this case.
+            } else {
                 heldSuits.remove(Suit.HEARTS);  // don't care if it wasn't there
             }
             leadingSuit = heldSuits.get((int) (Math.random() * heldSuits.size()));
+            return playerHand.getLowestCardOfSuit(leadingSuit).get();
         }
 
         boolean hasLeadingSuit = true;

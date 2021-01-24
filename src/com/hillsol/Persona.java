@@ -9,7 +9,7 @@ public enum Persona {
     // do Strategy Pattern when fully implemented
     private final int strategy;
 
-    Persona(int strategy){
+    Persona(final int strategy){
         this.strategy = strategy;
     }
 

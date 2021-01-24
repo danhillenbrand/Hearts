@@ -10,11 +10,11 @@ public class Hand {
     List<Player> playerList = new LinkedList();
     private boolean areHeartsBroken;
 
-    public Hand(List playerList) {
+    public Hand(final List<Player> playerList) {
         this.playerList = playerList;
     }
 
-    public void playHand(Deck52 deck, int passCardsOffset) {
+    public void playHand(final Deck52 deck, final int passCardsOffset) {
         for (Player player : playerList) {
             player.resetHandScore();
         }
@@ -41,7 +41,7 @@ public class Hand {
         }
     }
 
-    private void passCards(int passCardsOffset) {
+    private void passCards(final int passCardsOffset) {
         for (Player player : playerList) { // todo: utilize stream.randomize so all players choose cards concurrently.  Just for fun.
             player.setThreePassingCards(player.executePassThreeCards());
             playerList.indexOf(player);

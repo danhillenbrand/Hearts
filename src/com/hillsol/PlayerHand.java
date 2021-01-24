@@ -13,7 +13,7 @@ public class PlayerHand {
     private List<Card> hearts = new ArrayList<>();
     private List<Card> spades = new ArrayList<>();
 
-    public void receiveCard(Card dealtCard) {
+    public void receiveCard(final Card dealtCard) {
         switch (dealtCard.getSuit()) {
             // todo: candidate for a pattern here, or maybe just better structure:
             // todo also: Why did I make these ArrayLists instead of a Set or something?
@@ -60,7 +60,7 @@ public class PlayerHand {
     }
 
     // Called when randomly choosing cards to pass
-    public Card getRandomCard(boolean canChooseHearts) {
+    public Card getRandomCard(final boolean canChooseHearts) {
         Card randomCard = null;
         while (randomCard == null) {
             switch (Suit.getRandomSuit()) {
@@ -79,7 +79,7 @@ public class PlayerHand {
                         if (clubs.size()!=0 || diamonds.size()!=0 || spades.size()!=0){
                             break;
                         } else {
-                            canChooseHearts = true;
+//                            canChooseHearts = true;
                         }
                     }
                     if (hearts.size() > 0)
@@ -105,7 +105,7 @@ public class PlayerHand {
         return currentSuits;
     }
 
-    public Card retrieveSpecificCard(Suit suit, byte rankValue){
+    public Card retrieveSpecificCard(final Suit suit, final byte rankValue){
         switch (suit) {
             case CLUBS: {
                 for (Card card : clubs) {
@@ -139,7 +139,7 @@ public class PlayerHand {
         return null;
     }
 
-    public void removeCard(Card card) {
+    public void removeCard(final Card card) {
         switch (card.getSuit()) {
             case CLUBS: {
                 if (!clubs.remove(card)) throw new RuntimeException(card + " not found in player hand.");
@@ -197,7 +197,7 @@ public class PlayerHand {
         return spades;
     }
 
-    public List<Card> getCardsOfSuit(Suit suit){
+    public List<Card> getCardsOfSuit(final Suit suit){
         switch (suit){
             case CLUBS: return clubs;
             case HEARTS: return hearts;
@@ -209,7 +209,7 @@ public class PlayerHand {
         }
     }
 
-    public Optional<Card> getLowestCardOfSuit(Suit suit){
+    public Optional<Card> getLowestCardOfSuit(final Suit suit){
         Optional <Card> lowestRankingCard = Optional.empty();
         OptionalInt lowestRankValue = getCardsOfSuit(suit).stream()
                 .mapToInt(v -> v.getRank().getRankValue())

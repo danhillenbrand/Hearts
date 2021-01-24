@@ -16,7 +16,7 @@ public class Player {
     private Set<Card> threePassingCards;
     private int overallFirstPlaceGames;
 
-    public Player(String name, PassThreeStrategy passThreeStrategy, PlayHandStrategy playHandStrategy) {
+    public Player(final String name, final PassThreeStrategy passThreeStrategy, final PlayHandStrategy playHandStrategy) {
         this.name = name;
         this.playerHand = new PlayerHand();
         this.passThreeStrategy = passThreeStrategy;
@@ -37,7 +37,7 @@ public class Player {
         return currentGameScore;
     }
 
-    public void addGameScore(int score){
+    public void addGameScore(final int score){
         currentGameScore += score;
     }
 
@@ -49,7 +49,7 @@ public class Player {
         return threePassingCards;
     }
 
-    public void setThreePassingCards(Set<Card> threePassingCards) {
+    public void setThreePassingCards(final Set<Card> threePassingCards) {
         this.threePassingCards = threePassingCards;
     }
 
@@ -57,11 +57,11 @@ public class Player {
         return passThreeStrategy.passThreeCards(getPlayerHand());
     }
 
-    public Card executePlayCard(Set<Card> trick, Suit leadingSuit, boolean heartsAreBroken) {
+    public Card executePlayCard(final Set<Card> trick, final Suit leadingSuit, final boolean heartsAreBroken) {
         return playHandStrategy.playCard(trick, leadingSuit, playerHand, heartsAreBroken);
     }
 
-    public void addHandScore(int score){
+    public void addHandScore(final int score){
         currentHandScore += score;
     }
 

@@ -15,7 +15,7 @@ public class PassSpades implements PassThreeStrategy {
     * Otherwise, select highest cards
      */
     @Override
-    public Set<Card> passThreeCards(PlayerHand playerHand) {
+    public Set<Card> passThreeCards(final PlayerHand playerHand) {
         Set<Card> threeCards = new HashSet<>();
         Set<Card> cardsOfASuit = new HashSet<>();
 
@@ -77,6 +77,6 @@ public class PassSpades implements PassThreeStrategy {
                 }
             }
         }
-        throw new RuntimeException("Execute Programmer -- should never get here");
+        throw new RuntimeException("Execute Programmer; should never get to this code");
     }
 }

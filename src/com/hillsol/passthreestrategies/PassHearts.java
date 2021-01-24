@@ -13,10 +13,10 @@ public class PassHearts implements PassThreeStrategy {
      * Then select queen, ace, king of spades, if present.
      * Then clubs or diamonds, if they can be made void.
      * Clubs checked before diamonds since play starts with clubs.
-     * Otherwise, select highest cards
+     * Otherwise, select highest cards.
      */
     @Override
-    public Set<Card> passThreeCards(PlayerHand playerHand) {
+    public Set<Card> passThreeCards(final PlayerHand playerHand) {
         Set<Card> threeCards = new HashSet<>();
         Set<Card> cardsOfASuit = new HashSet<>();
 
@@ -108,6 +108,6 @@ public class PassHearts implements PassThreeStrategy {
                 }
             }
         }
-        return null; // should never get here
+        throw new RuntimeException("Execute Programmer; should never get to this code");
     }
 }
