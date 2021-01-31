@@ -3,7 +3,6 @@ package com.hillsol;
 import com.hillsol.passthreestrategies.PassThreeStrategy;
 import com.hillsol.playhandstrategies.PlayHandStrategy;
 
-import java.util.HashSet;
 import java.util.Set;
 
 public class Player {
@@ -15,6 +14,7 @@ public class Player {
     private final PlayHandStrategy playHandStrategy;
     private Set<Card> threePassingCards;
     private int overallFirstPlaceGames;
+    private int shootTheMoonCount;
 
     public Player(final String name, final PassThreeStrategy passThreeStrategy, final PlayHandStrategy playHandStrategy) {
         this.name = name;
@@ -65,13 +65,17 @@ public class Player {
         currentHandScore += score;
     }
 
-    public void addWin(){
+    public void incrementWinCount(){
         overallFirstPlaceGames++;
     }
+
+    public void incrementShootTheMoonCount(){ shootTheMoonCount++; }
 
     public int getOverallFirstPlaceGames() {
         return overallFirstPlaceGames;
     }
+
+    public int getShootTheMoonCount() { return shootTheMoonCount;}
 
     public String getPassThreeStrategyName() {
         return passThreeStrategy.getClass().getSimpleName();

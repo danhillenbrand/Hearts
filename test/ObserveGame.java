@@ -39,12 +39,25 @@ public class ObserveGame {
 //            game.printPlayers();
             Set<Player> winners = game.getWinningPlayers();
             for (Player winner : winners) {
-                winner.addWin();
+                winner.incrementWinCount();
             }
         }
-        game.printStatistics();
+        printStatistics(game);
     }
-
+    public static void printStatistics(Game game) {
+        for (Player player : game.getPlayers()) {
+            System.out.println(player.getOverallFirstPlaceGames()
+                    + " wins - " + player.getName()
+                    + "; " + player.getPassThreeStrategyName()
+                    + "; " + player.getPlayHandStrategyName()
+            );
+        }
+        System.out.println("\n========== Shoot the Moon counts ==========");
+        for (Player player : game.getPlayers()) {
+            System.out.println(player.getName() + ":  "
+                    + player.getShootTheMoonCount());
+        }
+    }
     // Copied from Apache Commons:
     public static boolean isNumeric(final CharSequence cs) {
         if (cs == null || cs.length() == 0) {

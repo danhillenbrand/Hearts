@@ -1,9 +1,6 @@
 package com.hillsol;
 
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Game {
     /*
@@ -17,14 +14,12 @@ public class Game {
     - sum scores; don't forget that shoot-the-moon thing
 
      */
-    List<Player> playerList = new LinkedList();
+    List<Player> playerList = new LinkedList<>();
 
     public Game(final Player... players) {
         if (players.length != 4) throw new RuntimeException("Game must have exactly 4 players.");
         // The order of players in varargs is the order in which they play the game.
-        for (Player player : players) {
-            playerList.add(player);
-        }
+        Collections.addAll(playerList, players);
     }
 
     public void playGame() {
@@ -53,9 +48,14 @@ public class Game {
         }
     }
 
+    public List<Player> getPlayers(){
+        return playerList;
+    }
     public Set<Player> getWinningPlayers() {
-        if (!didSomeoneLose()) return null;
+        // Can be more than one player with same low (winning) score
         Set<Player> winners = new HashSet<>();
+        if (didSomeoneLose() == false) return winners;
+        // todo:  replace this with stream, min reduction, Collect Players
         int lowScore = Integer.MAX_VALUE;
         for (Player player : playerList) {
             if (player.getCurrentGameScore() < lowScore) {
@@ -67,13 +67,23 @@ public class Game {
                 winners.add(player);
             }
         }
+//        if (winners.size() > 2) {
+//            System.out.println("Three-way tie among players:");
+//            for (Player player : winners)
+//            {
+//                System.out.println("   " + player.getName() + ":  " + lowScore);
+//            }
+//        }
         return winners;
     }
 
     private boolean didSomeoneLose() {
         boolean result = false;
         for (Player player : playerList) {
-            if (player.getCurrentGameScore() >= 100) result = true;
+            if (player.getCurrentGameScore() >= 100) {
+                result = true;
+                break;
+            }
         }
         return result;
     }
@@ -81,15 +91,6 @@ public class Game {
     public void reset() {
         for (Player player : playerList) {
             player.reset();
-        }
-    }
-
-    public void printStatistics() {
-        for (Player player : playerList) {
-            System.out.println(player.getOverallFirstPlaceGames() + " wins - " + player.getName()
-                    + "; " + player.getPassThreeStrategyName()
-                    + "; " + player.getPlayHandStrategyName()
-            );
         }
     }
 }

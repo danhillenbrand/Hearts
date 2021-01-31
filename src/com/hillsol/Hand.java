@@ -30,6 +30,7 @@ public class Hand {
         }
         for (Player player : playerList) {
             if (player.getCurrentHandScore()==26){
+                player.incrementShootTheMoonCount();
 //                System.out.println(player.getName() + " shot the moon! ====================================");
                 for (Player otherPlayer: playerList){
                     if (player!=otherPlayer) otherPlayer.addGameScore(26);
