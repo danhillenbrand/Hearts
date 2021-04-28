@@ -9,7 +9,7 @@ public final class Deck52 {
             for (int j = 0; j < Rank.values().length; j++) {
                 int cardIndex = (i * Rank.values().length) + j;
                 deck[cardIndex] = new Card(Rank.values()[j], Suit.values()[i]);
-                if (twoOfClubs != null) {
+                if (null == twoOfClubs) {
                     if ((Rank.values()[j] == Rank.TWO) && (Suit.values()[i] == Suit.CLUBS)) {
                         twoOfClubs = deck[cardIndex];
                     }
@@ -37,10 +37,10 @@ public final class Deck52 {
 
     @Override
     public String toString() {
-        StringBuilder result = new StringBuilder("");
+        StringBuilder result = new StringBuilder();
         for (Card card : deck
         ) {
-            result.append(card + "\n");
+            result.append(card).append("\n");
         }
         return result.toString();
     }

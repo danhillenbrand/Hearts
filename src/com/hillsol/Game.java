@@ -28,14 +28,14 @@ public class Game {
 //        System.out.println("Playing a Game ====================");
         // set up pass-three-cards instructions: left, right, across, none
         PassDirection[] passDirections = PassDirection.values();
-        int directionindex = 0;
+        int directionIndex = 0;
 
         while (didSomeoneLose() == false) {
             Hand hand = new Hand(playerList);
-            int passCardsOffset = passDirections[directionindex].getOffset();
+            int passCardsOffset = passDirections[directionIndex].getOffset();
             hand.playHand(deck, passCardsOffset);
-            directionindex++;
-            if (directionindex > 3) directionindex = 0;
+            directionIndex++;
+            if (directionIndex > 3) directionIndex = 0;
         }
 //         loggie
 //        System.out.println("============================ Game Over ==============================");

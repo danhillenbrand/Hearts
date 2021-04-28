@@ -1,13 +1,12 @@
 package com.hillsol;
 
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
 public class Hand {
 
-    List<Player> playerList = new LinkedList();
+    List<Player> playerList;
     private boolean areHeartsBroken;
 
     public Hand(final List<Player> playerList) {
@@ -88,7 +87,7 @@ public class Hand {
 //        if (areHeartsBroken) System.out.println("    Playing a Trick ==================== hearts broken ==");
 //        else System.out.println("    Playing a Trick ====================");
 
-        Set<Card> trick = new HashSet();
+        Set<Card> trick = new HashSet<>();
         int playerPosition = playerList.indexOf(leadingPlayer);
         Suit suitLed = null;
         // if player has the two of clubs, lead it (play it)

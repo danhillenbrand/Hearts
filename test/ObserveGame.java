@@ -11,7 +11,7 @@ public class ObserveGame {
         int numberOfGames = 1;
         if (args.length > 0) {
             if (isNumeric(args[0])) {
-                numberOfGames = Integer.valueOf(args[0]);
+                numberOfGames = Integer.parseInt(args[0]);
             }
         }
         System.out.println("============ Playing " + numberOfGames + " game(s) ==========");

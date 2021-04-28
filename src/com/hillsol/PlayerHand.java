@@ -8,46 +8,40 @@ import java.util.OptionalInt;
 import static com.hillsol.Suit.*;
 
 public class PlayerHand {
-    private List<Card> clubs = new ArrayList<>();
-    private List<Card> diamonds = new ArrayList<>();
-    private List<Card> hearts = new ArrayList<>();
-    private List<Card> spades = new ArrayList<>();
+    final private List<Card> clubs = new ArrayList<>();
+    final private List<Card> diamonds = new ArrayList<>();
+    final private List<Card> hearts = new ArrayList<>();
+    final private List<Card> spades = new ArrayList<>();
 
     public void receiveCard(final Card dealtCard) {
         switch (dealtCard.getSuit()) {
             // todo: candidate for a pattern here, or maybe just better structure:
             // todo also: Why did I make these ArrayLists instead of a Set or something?
-            case CLUBS: {
+            case CLUBS -> {
                 if (clubs.contains(dealtCard)) {
                     throw new RuntimeException("Attempted to deal the " + dealtCard + ", which has already been dealt.");
                 }
                 clubs.add(dealtCard);
-                break;
             }
-            case DIAMONDS: {
+            case DIAMONDS -> {
                 if (diamonds.contains(dealtCard)) {
                     throw new RuntimeException("Attempted to deal the " + dealtCard + ", which has already been dealt.");
                 }
                 diamonds.add(dealtCard);
-                break;
             }
-            case HEARTS: {
+            case HEARTS -> {
                 if (hearts.contains(dealtCard)) {
                     throw new RuntimeException("Attempted to deal " + dealtCard + ", which has already been dealt.");
                 }
                 hearts.add(dealtCard);
-                break;
             }
-            case SPADES: {
+            case SPADES -> {
                 if (spades.contains(dealtCard)) {
                     throw new RuntimeException("Attempted to deal " + dealtCard + ", which has already been dealt.");
                 }
                 spades.add(dealtCard);
-                break;
             }
-            default: {
-                throw new RuntimeException("Unknown suit for card: " + dealtCard);
-            }
+            default -> throw new RuntimeException("Unknown suit for card: " + dealtCard);
         }
     }
 
@@ -61,39 +55,34 @@ public class PlayerHand {
 
     // Called when randomly choosing cards to pass
     public Card getRandomCard(final boolean canChooseHearts) {
-        Card randomCard = null;
-        while (randomCard == null) {
+        while (true) {
             switch (Suit.getRandomSuit()) {
-                case CLUBS: {
+                case CLUBS -> {
                     if (clubs.size() > 0)
-                        return (clubs.get((int) Math.random() * clubs.size()));
-                    break;
+                        return (clubs.get((int) (Math.random() * clubs.size())));
                 }
-                case DIAMONDS: {
+                case DIAMONDS -> {
                     if (diamonds.size() > 0)
-                        return (diamonds.get((int) Math.random() * diamonds.size()));
-                    break;
+                        return (diamonds.get((int) (Math.random() * diamonds.size())));
                 }
-                case HEARTS: {
-                    if (!canChooseHearts){
-                        if (clubs.size()!=0 || diamonds.size()!=0 || spades.size()!=0){
+                case HEARTS -> {
+                    if (!canChooseHearts) {
+                        if (clubs.size() != 0 || diamonds.size() != 0 || spades.size() != 0) {
                             break;
                         } else {
+                            // todo:  when brainpower returns, check what's going on here:
 //                            canChooseHearts = true;
                         }
                     }
                     if (hearts.size() > 0)
-                        return (hearts.get((int) Math.random() * hearts.size()));
-                    break;
+                        return (hearts.get((int) (Math.random() * hearts.size())));
                 }
-                case SPADES: {
+                case SPADES -> {
                     if (spades.size() > 0)
-                        return (spades.get((int) Math.random() * spades.size()));
-                    break;
+                        return (spades.get((int) (Math.random() * spades.size())));
                 }
             }
         }
-        return null;
     }
 
     public List <Suit> getCurrentSuits(){
@@ -107,33 +96,29 @@ public class PlayerHand {
 
     public Card retrieveSpecificCard(final Suit suit, final byte rankValue){
         switch (suit) {
-            case CLUBS: {
+            case CLUBS -> {
                 for (Card card : clubs) {
                     if (card.getRank().getRankValue() == rankValue)
                         return card;
                 }
-                break;
             }
-            case DIAMONDS: {
+            case DIAMONDS -> {
                 for (Card card : diamonds) {
                     if (card.getRank().getRankValue() == rankValue)
                         return card;
                 }
-                break;
             }
-            case HEARTS: {
+            case HEARTS -> {
                 for (Card card : hearts) {
                     if (card.getRank().getRankValue() == rankValue)
                         return card;
                 }
-                break;
             }
-            case SPADES: {
+            case SPADES -> {
                 for (Card card : spades) {
                     if (card.getRank().getRankValue() == rankValue)
                         return card;
                 }
-                break;
             }
         }
         return null;
@@ -141,41 +126,35 @@ public class PlayerHand {
 
     public void removeCard(final Card card) {
         switch (card.getSuit()) {
-            case CLUBS: {
+            case CLUBS -> {
                 if (!clubs.remove(card)) throw new RuntimeException(card + " not found in player hand.");
-                break;
             }
-            case DIAMONDS: {
+            case DIAMONDS -> {
                 if (!diamonds.remove(card)) throw new RuntimeException(card + " not found in player hand.");
-                break;
             }
-            case HEARTS: {
+            case HEARTS -> {
                 if (!hearts.remove(card)) throw new RuntimeException(card + " not found in player hand.");
-                break;
             }
-            case SPADES: {
+            case SPADES -> {
                 if (!spades.remove(card)) throw new RuntimeException(card + " not found in player hand.");
-                break;
             }
-            default: {
-                throw new RuntimeException("Unknown suit for card: " + card);
-            }
+            default -> throw new RuntimeException("Unknown suit for card: " + card);
         }
     }
 
     public String toString() {
         StringBuilder result = new StringBuilder();
         for (Card card : clubs) {
-            result.append("\n" + card);
+            result.append("\n").append(card);
         }
         for (Card card : diamonds) {
-            result.append("\n" + card);
+            result.append("\n").append(card);
         }
         for (Card card : hearts) {
-            result.append("\n" + card);
+            result.append("\n").append(card);
         }
         for (Card card : spades) {
-            result.append("\n" + card);
+            result.append("\n").append(card);
         }
 
         return result.toString();
