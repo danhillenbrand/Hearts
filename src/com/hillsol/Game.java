@@ -67,8 +67,8 @@ public class Game {
                 winners.add(player);
             }
         }
-//        if (winners.size() > 2) {
-//            System.out.println("Three-way tie among players:");
+//        if (winners.size() > 1) {
+//            System.out.println("Tie among players:");
 //            for (Player player : winners)
 //            {
 //                System.out.println("   " + player.getName() + ":  " + lowScore);

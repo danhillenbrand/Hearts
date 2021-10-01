@@ -7,7 +7,7 @@ import com.hillsol.Rank;
 import java.util.HashSet;
 import java.util.Set;
 
-public class PassHighest implements PassThreeStrategy {
+public class PassLowest implements PassThreeStrategy {
     @Override
     public Set<Card> passThreeCards(final PlayerHand playerHand) {
         Set<Card> threeCards = new HashSet<>();
@@ -18,7 +18,7 @@ public class PassHighest implements PassThreeStrategy {
         fullHand.addAll(playerHand.getClubs());
         fullHand.addAll(playerHand.getDiamonds());
 
-        for (int rank = Rank.HIGHEST_RANK_VALUE; rank >= Rank.LOWEST_RANK_VALUE; rank--) {
+        for (int rank = Rank.LOWEST_RANK_VALUE; rank <= Rank.HIGHEST_RANK_VALUE; rank++) {
             for (Card card : fullHand) {
                 if (rank == card.getRank().getRankValue()) {
                     if (threeCards.add(card)) {

@@ -23,6 +23,9 @@ public enum Rank {
         this.rankValue = rank;
     }
 
+    public static final byte LOWEST_RANK_VALUE = 1;
+    public static final byte HIGHEST_RANK_VALUE = 13;
+
     public String getDisplayValue() {
         return displayValue;
     }

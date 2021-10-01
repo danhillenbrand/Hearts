@@ -21,6 +21,7 @@ public class ObserveGame {
         PassThreeStrategy passHighest = new PassHighest();
         PassThreeStrategy passSpades = new PassSpades();
         PassThreeStrategy passHearts = new PassHearts();
+        PassThreeStrategy passLowest = new PassLowest();
 
         PlayHandStrategy playRandomCard = new PlaySemiRandomCard();
         PlayHandStrategy playHighAlways = new PlayHighestCardAlways();
@@ -28,9 +29,9 @@ public class ObserveGame {
         PlayHandStrategy playCeilingCard = new PlayCeilingCard();
 
         Player aaron = new Player("Aaron", passHearts, playLowAlways);
-        Player freddie = new Player("Freddie", passSpades, playCeilingCard);
+        Player freddie = new Player("Freddie", passRandom, playCeilingCard);
         Player helena = new Player("Helena", passHighest, playHighAlways);
-        Player christina = new Player("Christina", passRandom, playRandomCard);
+        Player christina = new Player("Christina", passLowest, playRandomCard);
         Game game = new Game(aaron, freddie, helena, christina);
 //        game.printPlayers();
         for (int i = 0; i < numberOfGames; i++) {
@@ -38,6 +39,7 @@ public class ObserveGame {
             game.playGame();
 //            game.printPlayers();
             Set<Player> winners = game.getWinningPlayers();
+//            if (winners.size() != 1) System.out.println("Game "+ i +" winner count is " + winners.size());
             for (Player winner : winners) {
                 winner.incrementWinCount();
             }
