@@ -3,6 +3,7 @@ package com.hillsol.passthreestrategies;
 import com.hillsol.Card;
 import com.hillsol.PlayerHand;
 import com.hillsol.Rank;
+import com.hillsol.exceptions.DuplicateCardException;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -26,7 +27,7 @@ public class PassLowest implements PassThreeStrategy {
                         if (threeCards.size() == 3)
                             return threeCards;
                     } else {
-                        throw new RuntimeException("Duplicate Card Exception");
+                        throw new DuplicateCardException(card.toString());
                     }
                 }
             }

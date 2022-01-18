@@ -2,6 +2,7 @@ package com.hillsol.passthreestrategies;
 
 import com.hillsol.Card;
 import com.hillsol.PlayerHand;
+import com.hillsol.exceptions.DuplicateCardException;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -18,10 +19,9 @@ public class PassHearts implements PassThreeStrategy {
     @Override
     public Set<Card> passThreeCards(final PlayerHand playerHand) {
         var threeCards = new HashSet<Card>();
-        var cardsOfASuit = new HashSet<Card>();
 
         // need separate Set to avoid ConcurrentModificationException when trying to remove cards in loop
-        cardsOfASuit.addAll(playerHand.getHearts());
+        var cardsOfASuit = new HashSet<>(playerHand.getHearts());
 
         for (int rank = 13; rank > 0; rank--) {
             for (Card card : cardsOfASuit) {
@@ -30,7 +30,7 @@ public class PassHearts implements PassThreeStrategy {
                         playerHand.removeCard(card);
                         if (threeCards.size() == 3) return threeCards;
                     } else {
-                        throw new RuntimeException("Duplicate Card Exception");
+                        throw new DuplicateCardException(card.toString());
                     }
                 }
             }
@@ -47,7 +47,7 @@ public class PassHearts implements PassThreeStrategy {
                 playerHand.removeCard(queenOfSpades.get());
                 if (threeCards.size() == 3) return threeCards;
             } else {
-                throw new RuntimeException("Duplicate Card Exception");
+                throw new DuplicateCardException(queenOfSpades.toString());
             }
         }
 
@@ -59,7 +59,7 @@ public class PassHearts implements PassThreeStrategy {
                     playerHand.removeCard(card);
                     if (threeCards.size() == 3) return threeCards;
                 } else {
-                    throw new RuntimeException("Duplicate Card Exception");
+                    throw new DuplicateCardException(card.toString());
                 }
             }
         }
@@ -72,7 +72,7 @@ public class PassHearts implements PassThreeStrategy {
                     playerHand.removeCard(card);
                     if (threeCards.size() == 3) return threeCards;
                 } else {
-                    throw new RuntimeException("Duplicate Card Exception");
+                    throw new DuplicateCardException(card.toString());
                 }
             }
         }
@@ -85,7 +85,7 @@ public class PassHearts implements PassThreeStrategy {
                     playerHand.removeCard(card);
                     if (threeCards.size() == 3) return threeCards;
                 } else {
-                    throw new RuntimeException("Duplicate Card Exception");
+                    throw new DuplicateCardException(card.toString());
                 }
             }
         }
@@ -103,7 +103,7 @@ public class PassHearts implements PassThreeStrategy {
                         playerHand.removeCard(card);
                         if (threeCards.size() == 3) return threeCards;
                     } else {
-                        throw new RuntimeException("Duplicate Card Exception");
+                        throw new DuplicateCardException(card.toString());
                     }
                 }
             }

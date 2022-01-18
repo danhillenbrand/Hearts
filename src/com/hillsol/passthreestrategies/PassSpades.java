@@ -2,6 +2,7 @@ package com.hillsol.passthreestrategies;
 
 import com.hillsol.Card;
 import com.hillsol.PlayerHand;
+import com.hillsol.exceptions.DuplicateCardException;
 import com.hillsol.passthreestrategies.PassThreeStrategy;
 
 import java.util.HashSet;
@@ -28,7 +29,7 @@ public class PassSpades implements PassThreeStrategy {
                     playerHand.removeCard(card);
                     if (threeCards.size() == 3) return threeCards;
                 } else {
-                    throw new RuntimeException("Duplicate Card Exception");
+                    throw new DuplicateCardException(card.toString());
                 }
             }
         }
@@ -41,7 +42,7 @@ public class PassSpades implements PassThreeStrategy {
                     playerHand.removeCard(card);
                     if (threeCards.size() == 3) return threeCards;
                 } else {
-                    throw new RuntimeException("Duplicate Card Exception");
+                    throw new DuplicateCardException(card.toString());
                 }
             }
         }
@@ -54,7 +55,7 @@ public class PassSpades implements PassThreeStrategy {
                     playerHand.removeCard(card);
                     if (threeCards.size() == 3) return threeCards;
                 } else {
-                    throw new RuntimeException("Duplicate Card Exception");
+                    throw new DuplicateCardException(card.toString());
                 }
             }
         }
@@ -72,7 +73,7 @@ public class PassSpades implements PassThreeStrategy {
                         playerHand.removeCard(card);
                         if (threeCards.size() == 3) return threeCards;
                     } else {
-                        throw new RuntimeException("Duplicate Card Exception");
+                        throw new DuplicateCardException(card.toString());
                     }
                 }
             }
