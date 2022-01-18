@@ -30,10 +30,10 @@ public class ObserveGame {
         PlayHandStrategy playLowAlways = new PlayLowestCardAlways();
         PlayHandStrategy playCeilingCard = new PlayCeilingCard();
 
-        Player aaron = new Player("Aaron", passHearts, playLowAlways);
-        Player freddie = new Player("Freddie", passRandom, playCeilingCard);
-        Player helena = new Player("Helena", passLowest, playLowAlways);
-        Player christina = new Player("Christina", passLowest, playRandomCard);
+        Player aaron = new Player("Aaron", passSpades, playCeilingCard);
+        Player freddie = new Player("Freddie", passHighest, playCeilingCard);
+        Player helena = new Player("Helena", passHighest, playCeilingCard);
+        Player christina = new Player("Christina", passLowest, playCeilingCard);
         Game game = new Game(aaron, freddie, helena, christina);
 //        game.printPlayers();
         for (int i = 0; i < numberOfGames; i++) {

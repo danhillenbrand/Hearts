@@ -10,8 +10,8 @@ import java.util.Set;
 public class PassHighest implements PassThreeStrategy {
     @Override
     public Set<Card> passThreeCards(final PlayerHand playerHand) {
-        Set<Card> threeCards = new HashSet<>();
-        Set<Card> fullHand = new HashSet<>();
+        var threeCards = new HashSet<Card>();
+        var fullHand = new HashSet<Card>();
 
         fullHand.addAll(playerHand.getHearts());
         fullHand.addAll(playerHand.getSpades());

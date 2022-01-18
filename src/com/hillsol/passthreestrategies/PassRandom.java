@@ -9,7 +9,7 @@ import java.util.Set;
 public class PassRandom implements PassThreeStrategy {
     @Override
     public Set<Card> passThreeCards(final PlayerHand playerHand) {
-        Set<Card> threeCards  = new HashSet<Card>();
+        var threeCards  = new HashSet<Card>();
         for (int i = 0; i<3;i++) {
             Card chosenCard = playerHand.getRandomCard(true);
             if (threeCards.add(chosenCard)){

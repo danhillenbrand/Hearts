@@ -17,8 +17,8 @@ public class PassHearts implements PassThreeStrategy {
      */
     @Override
     public Set<Card> passThreeCards(final PlayerHand playerHand) {
-        Set<Card> threeCards = new HashSet<>();
-        Set<Card> cardsOfASuit = new HashSet<>();
+        var threeCards = new HashSet<Card>();
+        var cardsOfASuit = new HashSet<Card>();
 
         // need separate Set to avoid ConcurrentModificationException when trying to remove cards in loop
         cardsOfASuit.addAll(playerHand.getHearts());
