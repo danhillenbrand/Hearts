@@ -5,7 +5,9 @@ import com.hillsol.playhandstrategies.*;
 import java.util.Set;
 
 public class ObserveGame {
-
+    // error in shoot-the-moon counts
+    // reported 2 shoot the moons for Christina, after just one game played
+    // this may actually be OK ...
 
     public static void main(String[] args) {
         int numberOfGames = 1;
@@ -30,7 +32,7 @@ public class ObserveGame {
 
         Player aaron = new Player("Aaron", passHearts, playLowAlways);
         Player freddie = new Player("Freddie", passRandom, playCeilingCard);
-        Player helena = new Player("Helena", passHighest, playHighAlways);
+        Player helena = new Player("Helena", passLowest, playLowAlways);
         Player christina = new Player("Christina", passLowest, playRandomCard);
         Game game = new Game(aaron, freddie, helena, christina);
 //        game.printPlayers();
