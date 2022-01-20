@@ -62,6 +62,7 @@ public class ObserveGame {
                     + player.getShootTheMoonCount());
         }
     }
+
     // Copied from Apache Commons:
     public static boolean isNumeric(final CharSequence cs) {
         if (cs == null || cs.length() == 0) {
