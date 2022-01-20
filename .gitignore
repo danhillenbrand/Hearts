@@ -1,9 +1,20 @@
 ######################
 # Project Specific
 ######################
-/build/www/**
-/src/test/javascript/coverage/
-/src/test/javascript/PhantomJS*/
+
+##############################
+## Java
+##############################
+
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+# Virtual Machine crash logs
+hs_err_pid*
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
 
 ######################
 # Node
@@ -128,7 +139,7 @@ Desktop.ini
 ######################
 # Gradle Wrapper
 ######################
-!gradle/wrapper/gradle-wrapper.jar
+!gradle-wrapper.jar
 
 ######################
 # Maven Wrapper
