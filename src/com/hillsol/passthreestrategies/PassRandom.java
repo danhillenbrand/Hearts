@@ -16,7 +16,7 @@ public class PassRandom implements PassThreeStrategy {
             if (threeCards.add(card)){
                 playerHand.removeCard(card);
             } else {
-                throw new DuplicateCardException(card.toString());
+                throw new DuplicateCardException(card + "\nCards Passed:" + threeCards);
             }
         }
         return threeCards;

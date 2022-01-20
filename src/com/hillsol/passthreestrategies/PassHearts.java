@@ -10,7 +10,7 @@ import java.util.Set;
 
 public class PassHearts implements PassThreeStrategy {
     /*
-     * Select three highest hearts, if present.
+     * Select three cards; highest hearts, if present.
      * Then select queen, ace, king of spades, if present.
      * Then clubs or diamonds, if they can be made void.
      * Clubs checked before diamonds since play starts with clubs.
@@ -30,7 +30,7 @@ public class PassHearts implements PassThreeStrategy {
                         playerHand.removeCard(card);
                         if (threeCards.size() == 3) return threeCards;
                     } else {
-                        throw new DuplicateCardException(card.toString());
+                        throw new DuplicateCardException(card + "\nCards Passed:" + threeCards);
                     }
                 }
             }
@@ -47,7 +47,7 @@ public class PassHearts implements PassThreeStrategy {
                 playerHand.removeCard(queenOfSpades.get());
                 if (threeCards.size() == 3) return threeCards;
             } else {
-                throw new DuplicateCardException(queenOfSpades.toString());
+                throw new DuplicateCardException(queenOfSpades + "\nCards Passed:" + threeCards);
             }
         }
 
@@ -59,7 +59,7 @@ public class PassHearts implements PassThreeStrategy {
                     playerHand.removeCard(card);
                     if (threeCards.size() == 3) return threeCards;
                 } else {
-                    throw new DuplicateCardException(card.toString());
+                    throw new DuplicateCardException(card + "\nCards Passed:" + threeCards);
                 }
             }
         }
@@ -72,7 +72,7 @@ public class PassHearts implements PassThreeStrategy {
                     playerHand.removeCard(card);
                     if (threeCards.size() == 3) return threeCards;
                 } else {
-                    throw new DuplicateCardException(card.toString());
+                    throw new DuplicateCardException(card + "\nCards Passed:" + threeCards);
                 }
             }
         }
@@ -85,7 +85,7 @@ public class PassHearts implements PassThreeStrategy {
                     playerHand.removeCard(card);
                     if (threeCards.size() == 3) return threeCards;
                 } else {
-                    throw new DuplicateCardException(card.toString());
+                    throw new DuplicateCardException(card + "\nCards Passed:" + threeCards);
                 }
             }
         }
@@ -103,7 +103,7 @@ public class PassHearts implements PassThreeStrategy {
                         playerHand.removeCard(card);
                         if (threeCards.size() == 3) return threeCards;
                     } else {
-                        throw new DuplicateCardException(card.toString());
+                        throw new DuplicateCardException(card + "\nCards Passed:" + threeCards);
                     }
                 }
             }

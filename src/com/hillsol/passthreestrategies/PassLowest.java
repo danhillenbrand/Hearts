@@ -27,7 +27,7 @@ public class PassLowest implements PassThreeStrategy {
                         if (threeCards.size() == 3)
                             return threeCards;
                     } else {
-                        throw new DuplicateCardException(card.toString());
+                        throw new DuplicateCardException(card + "\nCards Passed:" + threeCards);
                     }
                 }
             }
