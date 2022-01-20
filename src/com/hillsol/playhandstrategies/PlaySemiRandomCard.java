@@ -6,6 +6,7 @@ import com.hillsol.Suit;
 
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class PlaySemiRandomCard implements PlayHandStrategy {
     /*
@@ -31,7 +32,7 @@ public class PlaySemiRandomCard implements PlayHandStrategy {
             } else {
                 heldSuits.remove(Suit.HEARTS);  // don't care if it wasn't there
             }
-            leadingSuit = heldSuits.get((int) (Math.random() * heldSuits.size()));
+            leadingSuit = heldSuits.get((ThreadLocalRandom.current().nextInt(0, heldSuits.size())));
             return playerHand.getLowestCardOfSuit(leadingSuit).get();
         }
 
@@ -40,13 +41,13 @@ public class PlaySemiRandomCard implements PlayHandStrategy {
         while (randomCard == null) {
             if (!hasLeadingSuit) {
                 List<Suit> heldSuits = playerHand.getCurrentSuits();
-                suitToSelectFrom = heldSuits.get((int) (Math.random() * heldSuits.size()));
+                suitToSelectFrom = heldSuits.get((ThreadLocalRandom.current().nextInt(0, heldSuits.size())));
             }
             switch (suitToSelectFrom) {
                 case CLUBS: {
                     if (playerHand.getClubs().size() > 0) {
                         return (playerHand.getClubs().get(
-                                (int) (Math.random() * playerHand.getClubs().size())));
+                                (ThreadLocalRandom.current().nextInt(0, playerHand.getClubs().size()))));
                     }
                     hasLeadingSuit = false;
                     break;
@@ -54,7 +55,7 @@ public class PlaySemiRandomCard implements PlayHandStrategy {
                 case DIAMONDS: {
                     if (playerHand.getDiamonds().size() > 0) {
                         return (playerHand.getDiamonds().get(
-                                (int) (Math.random() * playerHand.getDiamonds().size())));
+                                (ThreadLocalRandom.current().nextInt(0, playerHand.getDiamonds().size()))));
                     }
                     hasLeadingSuit = false;
                     break;
@@ -62,7 +63,7 @@ public class PlaySemiRandomCard implements PlayHandStrategy {
                 case HEARTS: {
                     if (playerHand.getHearts().size() > 0) {
                         return (playerHand.getHearts().get(
-                                (int) (Math.random() * playerHand.getHearts().size())));
+                                (ThreadLocalRandom.current().nextInt(0, playerHand.getHearts().size()))));
                     }
                     hasLeadingSuit = false;
                     break;
@@ -70,7 +71,7 @@ public class PlaySemiRandomCard implements PlayHandStrategy {
                 case SPADES: {
                     if (playerHand.getSpades().size() > 0) {
                         return (playerHand.getSpades().get(
-                                (int) (Math.random() * playerHand.getSpades().size())));
+                                (ThreadLocalRandom.current().nextInt(0, playerHand.getSpades().size()))));
                     }
                     hasLeadingSuit = false;
                     break;

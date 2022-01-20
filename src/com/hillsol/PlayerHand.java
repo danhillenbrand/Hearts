@@ -53,7 +53,6 @@ public class PlayerHand {
         return null;
     }
 
-    // Called when randomly choosing cards to pass
     public Card getRandomCard(final boolean canChooseHearts) {
         while (true) {
             switch (Suit.getRandomSuit()) {
@@ -158,6 +157,13 @@ public class PlayerHand {
         }
 
         return result.toString();
+    }
+
+    public boolean hasNoCards(){
+        if (clubs.isEmpty() && diamonds.isEmpty() && spades.isEmpty() && hearts.isEmpty()){
+            return true;
+        }
+        return false;
     }
 
     public List<Card> getClubs() {

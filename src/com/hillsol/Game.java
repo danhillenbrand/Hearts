@@ -24,8 +24,6 @@ public class Game {
 
     public void playGame() {
         Deck52 deck = new Deck52();
-//         loggie
-//        System.out.println("Playing a Game ====================");
         // set up pass-three-cards instructions: left, right, across, none
         PassDirection[] passDirections = PassDirection.values();
         int directionIndex = 0;
@@ -37,8 +35,6 @@ public class Game {
             directionIndex++;
             if (directionIndex > 3) directionIndex = 0;
         }
-//         loggie
-//        System.out.println("============================ Game Over ==============================");
     }
 
     public void printPlayers() {
@@ -67,13 +63,6 @@ public class Game {
                 winners.add(player);
             }
         }
-//        if (winners.size() > 1) {
-//            System.out.println("Tie among players:");
-//            for (Player player : winners)
-//            {
-//                System.out.println("   " + player.getName() + ":  " + lowScore);
-//            }
-//        }
         return winners;
     }
 

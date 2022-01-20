@@ -7,6 +7,7 @@ import com.hillsol.Suit;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class PlayHighestCardAlways implements PlayHandStrategy {
 
@@ -27,7 +28,7 @@ public class PlayHighestCardAlways implements PlayHandStrategy {
             } else {
                 heldSuits.remove(Suit.HEARTS);  // don't care if it wasn't there
             }
-            leadingSuit = heldSuits.get((int) (Math.random() * heldSuits.size()));
+            leadingSuit = heldSuits.get((ThreadLocalRandom.current().nextInt(0, heldSuits.size())));
             return playerHand.getLowestCardOfSuit(leadingSuit).get();
         }
 
@@ -36,7 +37,7 @@ public class PlayHighestCardAlways implements PlayHandStrategy {
         while (cardToPlay == null) {
             if (!hasLeadingSuit) {
                 List<Suit> heldSuits = playerHand.getCurrentSuits();
-                suitToSelectFrom = heldSuits.get((int) (Math.random() * heldSuits.size()));
+                suitToSelectFrom = heldSuits.get((ThreadLocalRandom.current().nextInt(0, heldSuits.size())));
             }
             switch (suitToSelectFrom) {
                 case CLUBS: {

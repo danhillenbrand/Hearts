@@ -30,7 +30,6 @@ public class Hand {
         for (Player player : playerList) {
             if (player.getCurrentHandScore()==26){
                 player.incrementShootTheMoonCount();
-//                System.out.println(player.getName() + " shot the moon! ====================================");
                 for (Player otherPlayer: playerList){
                     if (player!=otherPlayer) otherPlayer.addGameScore(26);
                 }
@@ -83,16 +82,11 @@ public class Hand {
     ** Returns the player who takes the trick
      */
     private Player playTrick(final Player leadingPlayer) {
-//         loggie
-//        if (areHeartsBroken) System.out.println("    Playing a Trick ==================== hearts broken ==");
-//        else System.out.println("    Playing a Trick ====================");
-
+// todo:  make this understandable by a human:
         Set<Card> trick = new HashSet<>();
         int playerPosition = playerList.indexOf(leadingPlayer);
         Suit suitLed = null;
         // if player has the two of clubs, lead it (play it)
-        // otherwise, if player has card of led suit, play it
-        // otherwise, play any card -- includes removing card from playerHand
 
         Player player = playerList.get(playerPosition);
         Card cardPlayed = player.getPlayerHand().getTwoOfClubs();
@@ -105,8 +99,6 @@ public class Hand {
             if (cardPlayed == null) {
                 cardPlayed = player.executePlayCard(trick, suitLed, areHeartsBroken);
             }
-//         loggie
-//            System.out.println("          " + player.getName() + ": " + cardPlayed);
             if (suitLed == null) {
                 suitLed = cardPlayed.getSuit();
                 highestRank = cardPlayed.getRank();

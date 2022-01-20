@@ -1,5 +1,7 @@
 package com.hillsol;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public enum Suit {
 
     CLUBS("Clubs"),
@@ -18,7 +20,7 @@ public enum Suit {
     }
 
     public static Suit getRandomSuit(){
-        int index = (int) (Math.random() * Suit.values().length);
+        int index = ThreadLocalRandom.current().nextInt(0, Suit.values().length);
         return Suit.values()[index];
     }
 }

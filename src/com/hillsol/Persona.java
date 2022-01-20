@@ -1,7 +1,7 @@
 package com.hillsol;
 
 public enum Persona {
-    GENIOUS(1),
+    GENIUS(1),
     SMARTY(1),
     AVERAGE(1),
     UNSKILLED(1);

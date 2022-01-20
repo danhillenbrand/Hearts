@@ -90,6 +90,9 @@ public class Player {
     }
 
     public String toString(){
+        if (playerHand.hasNoCards()){
+            return (name + "; score: " + currentGameScore);
+        }
         return (name + "; score: " + currentGameScore + "; cards:" + playerHand);
     }
 

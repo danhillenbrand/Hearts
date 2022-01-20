@@ -6,6 +6,7 @@ import com.hillsol.Rank;
 import com.hillsol.Suit;
 
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 /*
  *  If this is the leading player of the trick, just pick a card for now. Otherwise:
@@ -33,7 +34,7 @@ public class PlayCeilingCard implements PlayHandStrategy {
             } else {
                 heldSuits.remove(Suit.HEARTS);  // don't care if it wasn't there
             }
-            leadingSuit = heldSuits.get((int) (Math.random() * heldSuits.size()));
+            leadingSuit = heldSuits.get((ThreadLocalRandom.current().nextInt(0, heldSuits.size())));
             return playerHand.getLowestCardOfSuit(leadingSuit).get();
         }
 
