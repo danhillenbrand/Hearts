@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class PassHighest implements PassThreeStrategy {
+    // todo: randomize which cards are selected.  Currently, if player has all the aces, the Ace of Diamonds is never selected.
     @Override
     public Set<Card> passThreeCards(final PlayerHand playerHand) {
         var threeCards = new HashSet<Card>();

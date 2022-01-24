@@ -9,16 +9,9 @@ import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class PlaySemiRandomCard implements PlayHandStrategy {
-    /*
-       If you got the two of clubs, it must be played.  No exceptions.
-       You can only lead a heart if hearts are broken or you only have hearts.
-       If a suit has already been determined for this trick, you must follow suit if you can.
-       Otherwise you can play whatever you darn well please, including a heart.
-     */
+
     @Override
     public Card playCard(final Set<Card> trick, final Suit receivedLeadingSuit, final PlayerHand playerHand, final boolean heartsAreBroken) {
-        // This method will not be called when a player has the two of clubs.
-        // It's already been taken care of.
 
         Card randomCard = null;
         Suit leadingSuit = receivedLeadingSuit;

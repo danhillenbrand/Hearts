@@ -5,7 +5,7 @@ import java.util.*;
 public class Game {
     /*
     Create 4 players;
-    Designate the order of players for playing the game.  todo: make sure the player positions are shuffled in multiple games
+    Designate the order of players for playing the game.
     play hands until a player breaks 100 points:
     - shuffle cards
     - deal cards
@@ -21,6 +21,9 @@ public class Game {
         // The order of players in varargs is the order in which they play the game.
         Collections.addAll(playerList, players);
     }
+
+    // big todo:  Allow the players to see which cards have been played, and by whom.
+    //            Create playing strategies with the benefit of that information.
 
     public void playGame() {
         Deck52 deck = new Deck52();

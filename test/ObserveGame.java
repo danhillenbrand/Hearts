@@ -5,9 +5,6 @@ import com.hillsol.playhandstrategies.*;
 import java.util.Set;
 
 public class ObserveGame {
-    // error in shoot-the-moon counts
-    // reported 2 shoot the moons for Christina, after just one game played
-    // this may actually be OK ...
 
     public static void main(String[] args) {
         int numberOfGames = 1;
@@ -30,18 +27,16 @@ public class ObserveGame {
         PlayHandStrategy playLowAlways = new PlayLowestCardAlways();
         PlayHandStrategy playCeilingCard = new PlayCeilingCard();
 
+        // todo: make sure the player positions are shuffled in multiple games
         Player aaron = new Player("Aaron", passSpades, playCeilingCard);
         Player freddie = new Player("Freddie", passHighest, playHighAlways);
         Player helena = new Player("Helena", passRandom, playRandomCard);
         Player christina = new Player("Christina", passLowest, playLowAlways);
         Game game = new Game(aaron, freddie, helena, christina);
-//        game.printPlayers();
         for (int i = 0; i < numberOfGames; i++) {
             game.reset();
             game.playGame();
-//            game.printPlayers();
             Set<Player> winners = game.getWinningPlayers();
-//            if (winners.size() != 1) System.out.println("Game "+ i +" winner count is " + winners.size());
             for (Player winner : winners) {
                 winner.incrementWinCount();
             }

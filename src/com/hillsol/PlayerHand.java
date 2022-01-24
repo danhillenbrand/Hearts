@@ -52,7 +52,7 @@ public class PlayerHand {
         }
         return null;
     }
-
+// todo: modernize random number generation
     public Card getRandomCard(final boolean canChooseHearts) {
         while (true) {
             switch (Suit.getRandomSuit()) {

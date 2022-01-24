@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class PassLowest implements PassThreeStrategy {
+    // todo: randomize which cards are selected.  Currently, if player has all the deuces, the Two of Diamonds is never selected.
     @Override
     public Set<Card> passThreeCards(final PlayerHand playerHand) {
         var threeCards = new HashSet<Card>();

@@ -1,5 +1,5 @@
 package com.hillsol;
-
+// note: for future enhancement; not currently used:
 public enum Persona {
     GENIUS(1),
     SMARTY(1),

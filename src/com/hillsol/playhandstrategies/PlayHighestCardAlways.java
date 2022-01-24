@@ -13,8 +13,6 @@ public class PlayHighestCardAlways implements PlayHandStrategy {
 
     @Override
     public Card playCard(final Set<Card> trick, final Suit receivedLeadingSuit, final PlayerHand playerHand, final boolean heartsAreBroken) {
-        // This method will not be called when a player has the two of clubs.
-        // It's already been taken care of.
 
         Suit leadingSuit = receivedLeadingSuit;
         Card cardToPlay = null;
