@@ -22,9 +22,6 @@ public class Game {
         Collections.addAll(playerList, players);
     }
 
-    // big todo:  Allow the players to see which cards have been played, and by whom.
-    //            Create playing strategies with the benefit of that information.
-
     public void playGame() {
         Deck52 deck = new Deck52();
         // set up pass-three-cards instructions: left, right, across, none
