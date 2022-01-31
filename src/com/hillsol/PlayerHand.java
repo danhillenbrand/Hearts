@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.OptionalInt;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static com.hillsol.Suit.*;
 
@@ -52,17 +53,17 @@ public class PlayerHand {
         }
         return null;
     }
-// todo: modernize random number generation
+
     public Card getRandomCard(final boolean canChooseHearts) {
         while (true) {
             switch (Suit.getRandomSuit()) {
                 case CLUBS -> {
                     if (clubs.size() > 0)
-                        return (clubs.get((int) (Math.random() * clubs.size())));
+                        return (clubs.get((ThreadLocalRandom.current().nextInt(0, clubs.size()))));
                 }
                 case DIAMONDS -> {
                     if (diamonds.size() > 0)
-                        return (diamonds.get((int) (Math.random() * diamonds.size())));
+                        return (clubs.get((ThreadLocalRandom.current().nextInt(0, diamonds.size()))));
                 }
                 case HEARTS -> {
                     if (!canChooseHearts) {
@@ -74,11 +75,11 @@ public class PlayerHand {
                         }
                     }
                     if (hearts.size() > 0)
-                        return (hearts.get((int) (Math.random() * hearts.size())));
+                        return (clubs.get((ThreadLocalRandom.current().nextInt(0, hearts.size()))));
                 }
                 case SPADES -> {
                     if (spades.size() > 0)
-                        return (spades.get((int) (Math.random() * spades.size())));
+                        return (clubs.get((ThreadLocalRandom.current().nextInt(0, spades.size()))));
                 }
             }
         }
@@ -160,10 +161,7 @@ public class PlayerHand {
     }
 
     public boolean hasNoCards(){
-        if (clubs.isEmpty() && diamonds.isEmpty() && spades.isEmpty() && hearts.isEmpty()){
-            return true;
-        }
-        return false;
+        return clubs.isEmpty() && diamonds.isEmpty() && spades.isEmpty() && hearts.isEmpty();
     }
 
     public List<Card> getClubs() {
