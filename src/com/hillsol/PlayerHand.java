@@ -63,7 +63,7 @@ public class PlayerHand {
                 }
                 case DIAMONDS -> {
                     if (diamonds.size() > 0)
-                        return (clubs.get((ThreadLocalRandom.current().nextInt(0, diamonds.size()))));
+                        return (diamonds.get((ThreadLocalRandom.current().nextInt(0, diamonds.size()))));
                 }
                 case HEARTS -> {
                     if (!canChooseHearts) {
@@ -75,11 +75,11 @@ public class PlayerHand {
                         }
                     }
                     if (hearts.size() > 0)
-                        return (clubs.get((ThreadLocalRandom.current().nextInt(0, hearts.size()))));
+                        return (hearts.get((ThreadLocalRandom.current().nextInt(0, hearts.size()))));
                 }
                 case SPADES -> {
                     if (spades.size() > 0)
-                        return (clubs.get((ThreadLocalRandom.current().nextInt(0, spades.size()))));
+                        return (spades.get((ThreadLocalRandom.current().nextInt(0, spades.size()))));
                 }
             }
         }
