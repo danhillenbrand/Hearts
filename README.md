@@ -18,14 +18,15 @@ Again, the purpose is to demonstrate the technologies in action in an understand
 
 ## The Strategies
 
-There are two main strategies currently set up in the game:
+There are two main strategies currently set up in the game.
+They are both regarding the actions that the computer players make:
 
 1. Passing three cards to other players
     - At the beginning of most "hands", all players pass three cards to one of their competitors.   
     - There is an approach (strategy) for selecting the three cards, and that approach can vary depending on the player (and potentially other factors).
     - This strategy, in its current form in this repo, allows each player to select their approach to passing three cards, which will be the same strategy used throughout the game.
-    - Future enhancements could include allowing players to change their strategy mid-game, based on factors such as the state of the scores of the players, or where other players are "sitting".
+    - Future enhancements could include allowing players to change their strategy mid-game, based on factors such as the state of the scores of the players.
 2. Choosing a card to play
     - For each "trick" being played, each player must choose one card to play.
-    - As in the first strategy, above, the players' choice of strategy for which card they choose is constant throughout the game.
+    - As in the pass-three-card strategy, above, the players' choices of strategy for which card they choose is constant throughout the game.
     - Future enhancements could include allowing players to change their strategy on-the-fly.
